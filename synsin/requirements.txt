@@ -1,4 +1,3 @@
-name: pytorch3d
 channels:
   - pytorch
   - fvcore
@@ -116,5 +115,4 @@ dependencies:
   - fvcore=0.1.dev200114=py37_0
   - pytorch=1.4.0=py3.7_cuda10.0.130_cudnn7.6.3_0
   - torchvision=0.5.0=py37_cu100
-prefix: /home/abaozheng6/anaconda3/envs/pytorch3d
 
