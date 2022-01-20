@@ -1,8 +1,3 @@
-channels:
-  - pytorch
-  - fvcore
-  - conda-forge
-  - defaults
 dependencies:
   - portalocker=1.5.2=py37hc8dfbb8_1
   - python_abi=3.7=1_cp37m
