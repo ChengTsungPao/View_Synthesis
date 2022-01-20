@@ -1,4 +1,4 @@
-name: pytorch3d_src
+name: pytorch3d
 channels:
   - pytorch
   - fvcore
