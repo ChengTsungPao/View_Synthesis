@@ -1,3 +1,9 @@
+name: pytorch3d_src
+channels:
+  - pytorch
+  - fvcore
+  - conda-forge
+  - defaults
 dependencies:
   - portalocker=1.5.2=py37hc8dfbb8_1
   - python_abi=3.7=1_cp37m
@@ -110,4 +116,5 @@ dependencies:
   - fvcore=0.1.dev200114=py37_0
   - pytorch=1.4.0=py3.7_cuda10.0.130_cudnn7.6.3_0
   - torchvision=0.5.0=py37_cu100
+prefix: /home/abaozheng6/anaconda3/envs/pytorch3d_src
 
