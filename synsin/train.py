@@ -103,6 +103,10 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
             for add_im in output_image.keys():
                 if iteration == 1 and os.environ['DEBUG']:
 
+                    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/"
+                    if not os.path.isdir(pathFolder):
+                        os.mkdir(pathFolder)
+
                     pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
                     if not os.path.isdir(pathFolder):
                         os.mkdir(pathFolder)
