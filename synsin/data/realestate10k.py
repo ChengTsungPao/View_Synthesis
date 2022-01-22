@@ -155,9 +155,9 @@ class RealEstate10K(data.Dataset):
         # im = Image.fromarray(frames)
         # im.save(imageSaveFolder + self.imageset[index] + ".png")
         plt.imsave(imageSaveFolder + self.imageset[index] + ".png", frames)
-        print("++++++++++++++++++++++++++++++")
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
+        print("++++++++++++++++++++++++++++++", image_index)
 
         # Chose 15 images within 30 frames of the iniital one
         image_indices = self.rng.randint(80, size=(30,)) - 40 + image_index
