@@ -106,7 +106,7 @@ class BaseModel(nn.Module):
         if self.use_discriminator:
             all_output_images = []
             for j in range(0, num_steps):
-                ret = next(dataloader)
+                ret = dataloader[j]
                 print("here =======================================")
                 t_losses, output_images = self.model(ret)
                 print("there =======================================", t_losses)
