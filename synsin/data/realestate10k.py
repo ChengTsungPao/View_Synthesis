@@ -2,7 +2,8 @@
 
 import numpy as np
 import torch.utils.data as data
-from PIL import Image
+from PIL import Image, ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 from torchvision.transforms import Compose, Normalize, Resize, ToTensor
 
 from utils.geometry import get_deltas
