@@ -18,7 +18,7 @@
 import matplotlib.pyplot as plt
 
 import numpy as np
-import ipywidgets as wdg
+# import ipywidgets as wdg
 import quaternion
 
 from PIL import Image
@@ -138,13 +138,13 @@ fig = plt.figure()
 plt.axis('off')
 
 # Create and display textarea widget
-txt = wdg.Textarea(
-    value='',
-    placeholder='',
-    description='event:',
-    disabled=False
-)
-display(txt)
+# txt = wdg.Textarea(
+#     value='',
+#     placeholder='',
+#     description='event:',
+#     disabled=False
+# )
+# display(txt)
 
 pred_imshow = plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
 
