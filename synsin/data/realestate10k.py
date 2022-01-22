@@ -152,6 +152,7 @@ class RealEstate10K(data.Dataset):
         if os.path.isdir(imageSaveFolder):
             os.mkdir(imageSaveFolder)
         Image.Image.save(imageSaveFolder + frames)
+        print("++++++++++++++++++++++++++++++")
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
@@ -160,7 +161,6 @@ class RealEstate10K(data.Dataset):
         image_indices = np.minimum(
             np.maximum(image_indices, 0), frames.shape[0] - 1
         )
-        print("++++++++++++++++++++++++++++++")
 
         # Look at the change in angle and choose a hard one
         angles = []
