@@ -128,7 +128,7 @@ class RealEstate10K(data.Dataset):
                     "Kinv": self.invK,
                 }
             ]
-        print("++++++++++++++++++++++++++", rgbs)
+        
         return {"images": rgbs, "cameras": cameras}
 
     def __getitem__(self, index):
@@ -143,6 +143,7 @@ class RealEstate10K(data.Dataset):
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
+        print(frames)
         print("end loadtxt")
 
         # Cheng fx
