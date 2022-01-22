@@ -101,7 +101,7 @@ class BaseModel(nn.Module):
             if return_batch:
                 return t_losses, output_images, batch
             return t_losses, output_images
-        print(self.model)
+        # print(self.model)
         self.optimizer_G.zero_grad()
         if self.use_discriminator:
             all_output_images = []
