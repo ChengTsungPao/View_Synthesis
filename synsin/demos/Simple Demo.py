@@ -38,6 +38,7 @@ from options.options import get_model
 torch.backends.cudnn.enabled = True
 
 # REALESTATE
+# Cheng Fix
 MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/zbufferpts.pth'
 
 
@@ -83,6 +84,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+# Cheng Fix
 im = Image.open('/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg')
 im = transform(im)
 
