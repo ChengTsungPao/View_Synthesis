@@ -103,13 +103,13 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
             for add_im in output_image.keys():
                 if iteration == 1 and os.environ['DEBUG']:
 
-                    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/"
-                    if not os.path.isdir(pathFolder):
-                        os.mkdir(pathFolder)
+                    # pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/"
+                    # if not os.path.isdir(pathFolder):
+                    #     os.mkdir(pathFolder)
 
-                    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
-                    if not os.path.isdir(pathFolder):
-                        os.mkdir(pathFolder)
+                    # pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
+                    # if not os.path.isdir(pathFolder):
+                    #     os.mkdir(pathFolder)
 
                     torchvision.utils.save_image(
                         output_image[add_im][0:8, :, :, :].cpu().data,
@@ -117,9 +117,9 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
                         normalize=("Depth" in add_im),
                     )
                 
-                pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
-                if not os.path.isdir(pathFolder):
-                    os.mkdir(pathFolder)
+                # pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
+                # if not os.path.isdir(pathFolder):
+                #     os.mkdir(pathFolder)
                 
                 plotter.add_image(
                     "Image_train/%d_%s" % (iteration, add_im),
