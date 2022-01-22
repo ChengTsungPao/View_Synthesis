@@ -87,7 +87,7 @@ class BaseModel(nn.Module):
         each in the generator
         - return_batch: Whether to return the input values
         """
-        print("here =======================================")
+        print("here =======================================", self.use_discriminator)
         weight = 1.0 / float(num_steps)
         if isval:
             batch = next(dataloader)
