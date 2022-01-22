@@ -29,7 +29,6 @@ class RealEstate10K(data.Dataset):
         )
 
         if dataset == "train":
-            print(self.imageset)
             self.imageset = self.imageset[0 : int(0.8 * self.imageset.shape[0])]
         else:
             self.imageset = self.imageset[int(0.8 * self.imageset.shape[0]) :]
@@ -187,7 +186,6 @@ class RealEstate10K(data.Dataset):
         rgbs = []
         cameras = []
         for i in range(0, self.num_views):
-            print("loop i = {}".format(i))
 
             if i == 0:
                 t_index = image_index
@@ -198,7 +196,7 @@ class RealEstate10K(data.Dataset):
                 t_index = image_indices[
                     self.rng.randint(image_indices.shape[0])
                 ]
-
+            # Cheng Fix
             image = Image.open(
                 self.base_file
                 + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
