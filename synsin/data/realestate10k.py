@@ -160,6 +160,7 @@ class RealEstate10K(data.Dataset):
         image_indices = np.minimum(
             np.maximum(image_indices, 0), frames.shape[0] - 1
         )
+        print("++++++++++++++++++++++++++++++")
 
         # Look at the change in angle and choose a hard one
         angles = []
@@ -182,7 +183,7 @@ class RealEstate10K(data.Dataset):
         rgbs = []
         cameras = []
         for i in range(0, self.num_views):
-            print("lllllllllllllllllllllllllllllllllllllllllllllllllllloop i = {}".format(i))
+            print("loop i = {}".format(i))
 
             if i == 0:
                 t_index = image_index
