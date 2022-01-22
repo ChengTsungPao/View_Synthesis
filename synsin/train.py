@@ -85,14 +85,6 @@ if os.environ['USE_SLURM'] == 1:
 def train(epoch, data_loader, model, log_path, plotter, opts):
     print("At train", flush=True)
 
-    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
-    if not os.path.exists(pathFolder):
-        os.makedirs(pathFolder)
-
-    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
-    if not os.path.exists(pathFolder):
-        os.makedirs(pathFolder)
-
     losses = {}
     iter_data_loader = iter(data_loader)
 
@@ -227,6 +219,13 @@ def checkpoint(model, save_path, CHECKPOINT_tempfile):
 
 def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
     print("Starting run...", flush=True)
+    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
+    if not os.path.exists(pathFolder):
+        os.makedirs(pathFolder)
+
+    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
+    if not os.path.exists(pathFolder):
+        os.makedirs(pathFolder)
 
     opts.best_epoch = 0
     opts.best_loss = -1000
