@@ -87,7 +87,7 @@ class BaseModel(nn.Module):
         each in the generator
         - return_batch: Whether to return the input values
         """
-        print("here =======================================", self.use_discriminator)
+        
         weight = 1.0 / float(num_steps)
         if isval:
             batch = next(dataloader)
@@ -106,7 +106,9 @@ class BaseModel(nn.Module):
         if self.use_discriminator:
             all_output_images = []
             for j in range(0, num_steps):
+                print("here =======================================")
                 t_losses, output_images = self.model(next(dataloader))
+                print("there =======================================", t_losses)
                 g_losses = self.netD.run_generator_one_step(
                     output_images["PredImg"], output_images["OutputImg"]
                 )
