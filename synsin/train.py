@@ -102,11 +102,17 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
         if iteration % 250 == 0 or iteration == 1:
             for add_im in output_image.keys():
                 if iteration == 1 and os.environ['DEBUG']:
+                    if not os.path.isdir("./debug/Image_train/"):
+                        os.makedirs("./debug/Image_train/")
+
                     torchvision.utils.save_image(
                         output_image[add_im][0:8, :, :, :].cpu().data,
                         "./debug/Image_train/%d_%s.png" % (iteration, add_im),
                         normalize=("Depth" in add_im),
                     )
+
+                if not os.path.isdir("Image_train/"):
+                    os.makedirs("Image_train/")
                 
                 plotter.add_image(
                     "Image_train/%d_%s" % (iteration, add_im),
