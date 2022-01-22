@@ -6,7 +6,7 @@ export DEBUG=0
 export USE_SLURM=0
 
 # How to run on RealEstate10K
-python train.py --batch-size 16 --folder 'temp' --num_workers 4  \
+python train.py --batch-size 8 --folder 'temp' --num_workers 8  \
          --resume --dataset 'realestate' --use_inv_z --accumulation 'alphacomposite' \
          --model_type 'zbuffer_pts' --refine_model_type 'resnet_256W8UpDown64'  \
          --norm_G 'sync:spectral_batch' --gpu_ids 0,1 --render_ids 1 \
