@@ -85,6 +85,14 @@ if os.environ['USE_SLURM'] == 1:
 def train(epoch, data_loader, model, log_path, plotter, opts):
     print("At train", flush=True)
 
+    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
+    if not os.path.exists(pathFolder):
+        os.makedirs(pathFolder)
+
+    pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
+    if not os.path.exists(pathFolder):
+        os.makedirs(pathFolder)
+
     losses = {}
     iter_data_loader = iter(data_loader)
 
@@ -93,13 +101,6 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
             iter_data_loader, isval=False, num_steps=opts.num_accumulations
         )
         print("finish one train !!!!!!!!!!!!!")
-        pathFolder = "/home/abaozheng6/View_Synthesis/synsin/debug/Image_train/"
-        if not os.path.exists(pathFolder):
-            os.makedirs(pathFolder)
-
-        pathFolder = "/home/abaozheng6/View_Synthesis/synsin/Image_train/"
-        if not os.path.exists(pathFolder):
-            os.makedirs(pathFolder)
 
         for l in t_losses.keys():
             if l in losses.keys():
