@@ -139,16 +139,14 @@ class RealEstate10K(data.Dataset):
         index = self.rng.randint(self.imageset.shape[0])
         # index = index % self.imageset.shape[0]
         # Load text file containing frame information
-        print("start loadtxt")
 
         # Cheng fx
+        print("RealEstate10K Loading ... (__getitem__)")
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
-
-        print("end loadtxt")
 
         # # Cheng fx
         for line in frames:
@@ -167,7 +165,6 @@ class RealEstate10K(data.Dataset):
         image_indices = np.minimum(
             np.maximum(image_indices, 0), frames.shape[0] - 1
         )
-        print("++++++++++++++++++++++++++++++", image_index, frames.shape, np.array(frames).shape)
 
         # Look at the change in angle and choose a hard one
         angles = []
@@ -241,7 +238,7 @@ class RealEstate10K(data.Dataset):
                     "Kinv": self.invK,
                 }
             ]
-        print("finish !!!!!!!!!!!!!!!!!!!!!")
+
         return {"images": rgbs, "cameras": cameras}
 
     def totrain(self, epoch):
