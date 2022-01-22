@@ -141,7 +141,7 @@ class RealEstate10K(data.Dataset):
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
-            skiprows=1
+            # skiprows=1
         )
 
         print("end loadtxt")
@@ -323,13 +323,6 @@ class RealEstate10KConsecutive(data.Dataset):
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
-
-        # Cheng fx
-        import os
-        imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-        if os.path.isdir(imageSaveFolder):
-            os.mkdir(imageSaveFolder)
-        Image.Image.save(imageSaveFolder + frames)
 
         image_index = self.rng.choice(
             max(1, frames.shape[0] - self.num_views), size=(1,)
