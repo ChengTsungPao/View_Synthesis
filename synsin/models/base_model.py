@@ -87,6 +87,7 @@ class BaseModel(nn.Module):
         each in the generator
         - return_batch: Whether to return the input values
         """
+        print("here =======================================")
         weight = 1.0 / float(num_steps)
         if isval:
             batch = next(dataloader)
@@ -132,7 +133,6 @@ class BaseModel(nn.Module):
             t_losses.update(d_losses)
         else:
             for step in range(0, num_steps):
-                print("here =======================================")
                 t_losses, output_images = self.model(next(dataloader))
                 (t_losses["Total Loss"] / weight).mean().backward()
             self.optimizer_G.step()
