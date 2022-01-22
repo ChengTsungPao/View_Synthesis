@@ -301,7 +301,8 @@ class RealEstate10KConsecutive(data.Dataset):
         # Load text file containing frame information
         frames = np.loadtxt(
             self.base_file
-            + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index])
+            + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
+            skiprows=1
         )
 
         image_index = self.rng.choice(
