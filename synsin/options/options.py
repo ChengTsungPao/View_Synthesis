@@ -66,8 +66,9 @@ def get_dataset(opt):
     elif opt.dataset == "realestate":
         opt.min_z = 1.0
         opt.max_z = 100.0
+        # Cheng fix
         opt.train_data_path = (
-            "/checkpoint/ow045820/data/realestate10K/RealEstate10K/"
+            "/home/abaozheng6/View_Synthesis/synsin/data/realestate10K/RealEstate10K/"
         )
         from data.realestate10k import RealEstate10K
 
