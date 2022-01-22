@@ -143,7 +143,7 @@ class RealEstate10K(data.Dataset):
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
-        print(frames)
+
         print("end loadtxt")
 
         # Cheng fx
