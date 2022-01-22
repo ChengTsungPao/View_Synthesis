@@ -92,6 +92,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
         t_losses, output_image = model(
             iter_data_loader, isval=False, num_steps=opts.num_accumulations
         )
+        print("finish one train !!!!!!!!!!!!!")
 
         for l in t_losses.keys():
             if l in losses.keys():
@@ -138,7 +139,6 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
                 {"train": t_losses[l].cpu().mean().detach().item()},
                 epoch * 500 + iteration,
             )
-    print("finish one train !!!!!!!!!!!!!")
     return {l: losses[l] / float(iteration) for l in losses.keys()}
 
 
@@ -252,7 +252,7 @@ def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
         drop_last=True,
         pin_memory=True,
     )
-    print(model)
+
     print("Loaded train dataset ...", flush=True)
 
     for epoch in range(opts.continue_epoch, opts.max_epoch):
