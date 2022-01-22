@@ -105,8 +105,9 @@ class BaseModel(nn.Module):
         self.optimizer_G.zero_grad()
         if self.use_discriminator:
             all_output_images = []
-            for j in range(0, num_steps):
-                ret = dataloader[j]
+            # for j in range(0, num_steps):
+            for ret in dataloader:
+                # ret = dataloader[j]
                 print("here =======================================")
                 t_losses, output_images = self.model(ret)
                 print("there =======================================", t_losses)
