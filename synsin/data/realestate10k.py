@@ -148,11 +148,13 @@ class RealEstate10K(data.Dataset):
 
         # Cheng fx
         import os
+        import matplotlib.pyplot as plt
         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
         if not os.path.isdir(imageSaveFolder):
             os.mkdir(imageSaveFolder)
-        im = Image.fromarray(frames)
-        im.save(imageSaveFolder + self.imageset[index] + ".png")
+        # im = Image.fromarray(frames)
+        # im.save(imageSaveFolder + self.imageset[index] + ".png")
+        plt.imsave(imageSaveFolder + self.imageset[index] + ".png", frames)
         print("++++++++++++++++++++++++++++++")
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
