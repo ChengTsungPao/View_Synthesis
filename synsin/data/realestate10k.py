@@ -300,11 +300,19 @@ class RealEstate10KConsecutive(data.Dataset):
     def __getitem__(self, index):
         index = self.rng.randint(self.imageset.shape[0])
         # Load text file containing frame information
+        
+        # Cheng fx
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
+
+        import os
+        imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+        if os.path.isdir(imageSaveFolder):
+            os.mkdir(imageSaveFolder)
+        Image.save(imageSaveFolder + frames)
 
         image_index = self.rng.choice(
             max(1, frames.shape[0] - self.num_views), size=(1,)
