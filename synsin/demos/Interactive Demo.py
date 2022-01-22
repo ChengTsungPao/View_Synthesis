@@ -50,7 +50,7 @@ from options.options import get_model, get_dataset
 torch.backends.cudnn.enabled = True
 
 # REALESTATE
-MODEL_PATH = './modelcheckpoints/realestate/zbufferpts.pth'
+MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/zbufferpts.pth'
 
 #MP3D
 # MODEL_PATH = './modelcheckpoints/mp3d/zbufferpts.pth'
@@ -101,7 +101,7 @@ if USE_IMAGE:
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-    im = Image.open('./demos/im.jpg')
+    im = Image.open('/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg')
     im = transform(im)
     
     batch = {
