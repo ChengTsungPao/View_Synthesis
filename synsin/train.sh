@@ -1,6 +1,6 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
 
-source activate synsin_env
+source activate pytorch3d
 
 export DEBUG=0
 export USE_SLURM=0
