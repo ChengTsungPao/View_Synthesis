@@ -252,7 +252,7 @@ def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
         drop_last=True,
         pin_memory=True,
     )
-
+    print(model)
     print("Loaded train dataset ...", flush=True)
 
     for epoch in range(opts.continue_epoch, opts.max_epoch):
