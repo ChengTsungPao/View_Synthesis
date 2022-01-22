@@ -26,7 +26,7 @@ class RealEstate10K(data.Dataset):
 
         if dataset == "train":
             print(self.imageset)
-            # self.imageset = self.imageset[0 : int(0.8 * self.imageset.shape[0])]
+            self.imageset = self.imageset[0 : int(0.8 * self.imageset.shape[0])]
         else:
             self.imageset = self.imageset[int(0.8 * self.imageset.shape[0]) :]
 
