@@ -38,7 +38,7 @@ from options.options import get_model
 torch.backends.cudnn.enabled = True
 
 # REALESTATE
-MODEL_PATH = './modelcheckpoints/realestate/zbufferpts.pth'
+MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/zbufferpts.pth'
 
 
 BATCH_SIZE = 1
