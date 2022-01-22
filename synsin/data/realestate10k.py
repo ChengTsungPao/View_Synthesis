@@ -135,10 +135,12 @@ class RealEstate10K(data.Dataset):
         index = self.rng.randint(self.imageset.shape[0])
         # index = index % self.imageset.shape[0]
         # Load text file containing frame information
+        print("start loadtxt")
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index])
         )
+        print("end loadtxt")
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
