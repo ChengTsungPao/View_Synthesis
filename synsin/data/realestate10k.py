@@ -182,7 +182,7 @@ class RealEstate10K(data.Dataset):
         rgbs = []
         cameras = []
         for i in range(0, self.num_views):
-            print("loop i = {}".format(i))
+            print("lllllllllllllllllllllllllllllllllllllllllllllllllllloop i = {}".format(i))
 
             if i == 0:
                 t_index = image_index
