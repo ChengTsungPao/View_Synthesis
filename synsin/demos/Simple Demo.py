@@ -83,7 +83,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-im = Image.open('./demos/im.jpg')
+im = Image.open('/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg')
 im = transform(im)
 
 # Parameters for the transformation
