@@ -273,10 +273,11 @@ class ArgumentParser:
         )
         training.add_argument("--resume", action="store_true", default=False)
 
+        # Cheng Fix
         training.add_argument(
             "--log-dir",
             type=str,
-            default="/checkpoint/ow045820/logging/viewsynthesis3d/%s/",
+            default="/home/cheng/View_Synthesis/synsin/logging/viewsynthesis3d/%s/",
         )
 
         training.add_argument("--batch-size", type=int, default=16)
