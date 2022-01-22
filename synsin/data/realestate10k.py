@@ -203,7 +203,7 @@ class RealEstate10K(data.Dataset):
                 + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
                 + str(int(frames[t_index, 0]))
                 + ".png"
-            )
+            ).convert('RGB')
             rgbs += [self.input_transform(image)]
 
             intrinsics = frames[t_index, 1:7]
