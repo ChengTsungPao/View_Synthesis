@@ -230,7 +230,7 @@ class RealEstate10K(data.Dataset):
                     "Kinv": self.invK,
                 }
             ]
-
+        print("finish !!!!!!!!!!!!!!!!!!!!!")
         return {"images": rgbs, "cameras": cameras}
 
     def totrain(self, epoch):
