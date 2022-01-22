@@ -14,7 +14,7 @@
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'notebook')
+# get_ipython().run_line_magic('matplotlib', 'notebook')
 import matplotlib.pyplot as plt
 
 import numpy as np
