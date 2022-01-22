@@ -157,13 +157,13 @@ class RealEstate10K(data.Dataset):
         plt.imsave(imageSaveFolder + self.imageset[index] + ".png", frames)
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
-        print("++++++++++++++++++++++++++++++", image_index)
 
         # Chose 15 images within 30 frames of the iniital one
         image_indices = self.rng.randint(80, size=(30,)) - 40 + image_index
         image_indices = np.minimum(
             np.maximum(image_indices, 0), frames.shape[0] - 1
         )
+        print("++++++++++++++++++++++++++++++", image_index, frames.shape, np.array(frames).shape)
 
         # Look at the change in angle and choose a hard one
         angles = []
