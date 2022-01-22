@@ -141,7 +141,7 @@ class RealEstate10K(data.Dataset):
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
-            # skiprows=1
+            skiprows=1
         )
 
         print("end loadtxt")
