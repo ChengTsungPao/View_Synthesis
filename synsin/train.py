@@ -138,7 +138,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
                 {"train": t_losses[l].cpu().mean().detach().item()},
                 epoch * 500 + iteration,
             )
-
+    print("finish one train !!!!!!!!!!!!!")
     return {l: losses[l] / float(iteration) for l in losses.keys()}
 
 
