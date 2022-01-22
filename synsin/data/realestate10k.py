@@ -151,7 +151,8 @@ class RealEstate10K(data.Dataset):
         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
         if os.path.isdir(imageSaveFolder):
             os.mkdir(imageSaveFolder)
-        frames.save(imageSaveFolder + self.imageset[index] + ".png")
+        im = Image.fromarray(frames)
+        im.save(imageSaveFolder + self.imageset[index] + ".png")
         print("++++++++++++++++++++++++++++++")
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
