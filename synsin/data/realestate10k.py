@@ -128,7 +128,7 @@ class RealEstate10K(data.Dataset):
                     "Kinv": self.invK,
                 }
             ]
-        print(rgbs)
+        print("++++++++++++++++++++++++++", rgbs)
         return {"images": rgbs, "cameras": cameras}
 
     def __getitem__(self, index):
