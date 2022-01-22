@@ -149,7 +149,7 @@ class RealEstate10K(data.Dataset):
         # Cheng fx
         import os
         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-        if os.path.isdir(imageSaveFolder):
+        if not os.path.isdir(imageSaveFolder):
             os.mkdir(imageSaveFolder)
         im = Image.fromarray(frames)
         im.save(imageSaveFolder + self.imageset[index] + ".png")
