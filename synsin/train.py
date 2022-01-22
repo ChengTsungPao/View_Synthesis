@@ -89,7 +89,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     for iteration in range(1, min(501, len(data_loader))):
-        print("iteration = {} (epoch = {})".format(iteration, epoch))
+        print("\niteration = {} (epoch = {})".format(iteration, epoch))
 
         t_losses, output_image = model(
             iter_data_loader, isval=False, num_steps=opts.num_accumulations
