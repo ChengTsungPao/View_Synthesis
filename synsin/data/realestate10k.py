@@ -5,11 +5,67 @@ import torch.utils.data as data
 
 # Cheng Fix
 from PIL import Image, ImageFile
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-
 from torchvision.transforms import Compose, Normalize, Resize, ToTensor
-
 from utils.geometry import get_deltas
+
+
+############################################################################################################
+# Cheng Fix
+from pytube import YouTube
+import os
+import glob
+import cv2
+import youtube_dl
+import numpy as np
+
+def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=False):
+    f = os.path.join(txt_dir, videotxtFilename + '.txt')
+    print(f)
+    file_name = f.split('\\')[-1].split('.')[0]  #the file name and remark
+    out_f = os.path.join(out_dir,file_name)
+    if os.path.exists(out_f): 
+        print('the file exists. skip....')
+    video_txt = open(f)
+    content = video_txt.readlines()
+    url = content[0]   #the url file
+    try:
+        ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=True)
+            output_file = ydl.prepare_filename(info)
+    except:
+        print("An exception occurred, maybe because of the downloading limits of youtube.")
+    #if video is already downloaded, start extracting frames
+    os.makedirs(out_f, exist_ok=True)
+    if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
+    os.rename(output_file, os.path.join(out_f, file_name + '.mp4'))
+    line = url
+    vidcap = cv2.VideoCapture(os.path.join(out_f, file_name + '.mp4'))
+    frame_ind = 1
+    frame_file = open(out_f + '/pos.txt','w')
+    for num in range(1, len(content), stride):
+        line = content[num]
+        videoTime = line.split(" ")[0]
+        print("Convert Time = {} to Image".format(videoTime))
+        frame_file.write(line)
+        if line == '\n': break
+        #line = video_txt.readline()
+        ts = line.split(' ')[0][:-3]  #extract the time stamp
+        if ts == '': break
+        vidcap.set(cv2.CAP_PROP_POS_MSEC,int(ts))      # just cue to 20 sec. position
+        success,image = vidcap.read()
+        if success:
+            # Cheng Fix
+            cv2.imwrite(out_f + '/' + str(videoTime) + '.png', image)     # save frame as JPEG file
+            frame_ind += stride
+    frame_file.close()
+    video_txt.close()
+    
+    if remove_video:
+        os.remove(os.path.join(out_f, file_name + '.mp4'))
+############################################################################################################
 
 
 class RealEstate10K(data.Dataset):
@@ -148,18 +204,28 @@ class RealEstate10K(data.Dataset):
         )
 
         # # Cheng fx
+
+        # Random Data Input
         import os
         import matplotlib.pyplot as plt
-        for line in frames:
-            try:
-                time = line[0]
-                imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-                if not os.path.exists(imageSaveFolder):
-                    os.makedirs(imageSaveFolder)
-                if not os.path.exists(imageSaveFolder + str(int(time)) + ".png"):
-                    plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
-            except:
-                pass
+        # for line in frames:
+        #     try:
+        #         time = line[0]
+        #         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+        #         if not os.path.exists(imageSaveFolder):
+        #             os.makedirs(imageSaveFolder)
+        #         if not os.path.exists(imageSaveFolder + str(int(time)) + ".png"):
+        #             plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
+        #     except:
+        #         pass
+
+        try:
+            imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
+            download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index], stride=1, remove_video=True)
+        except:
+            pass
+
+        
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
