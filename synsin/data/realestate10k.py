@@ -22,17 +22,15 @@ import numpy as np
 
 def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=False):
     f = os.path.join(txt_dir, videotxtFilename + '.txt')
-    print(f)
+    print("video ID = {}".format(videotxtFilename))
     file_name = f.split('\\')[-1].split('.')[0]  #the file name and remark
     out_f = os.path.join(out_dir,file_name)
-    if os.path.exists(out_f): 
-        print(out_f, "==============")
+    if os.path.exists(out_f + '.mp4'): 
         print('the file exists. skip....')
     video_txt = open(f)
     content = video_txt.readlines()
     url = content[0]   #the url file
-    print(os.path.join(txt_dir, videotxtFilename + '.mp4'))
-    if not os.path.exists(os.path.join(txt_dir, videotxtFilename + '.mp4')):
+    if not os.path.exists(out_f + '.mp4'):
         try:
             ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
