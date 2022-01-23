@@ -98,7 +98,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
         date = time.localtime()
         print()
         print(time.strftime("%Y-%m-%d %H:%M:%S", date))
-        print("iteration = {} (epoch = {})".format(iteration, epoch))
+        print("Train iteration = {} (epoch = {})".format(iteration, epoch))
 
         t_losses, output_image = model(
             iter_data_loader, isval=False, num_steps=opts.num_accumulations
@@ -150,15 +150,24 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
                 {"train": t_losses[l].cpu().mean().detach().item()},
                 epoch * 500 + iteration,
             )
+
+    print("\n==================================================")
     return {l: losses[l] / float(iteration) for l in losses.keys()}
 
 
 def val(epoch, data_loader, model, log_path, plotter):
 
     losses = {}
-
     iter_data_loader = iter(data_loader)
-    for iteration in range(1, min(51, len(data_loader))):
+    
+    # Cheng Fix
+    iteration_number = 10 + 1
+    for iteration in range(1, min(iteration_number, len(data_loader))):
+        date = time.localtime()
+        print()
+        print(time.strftime("%Y-%m-%d %H:%M:%S", date))
+        print("Validation iteration = {} (epoch = {})".format(iteration, epoch))
+
         t_losses, output_image = model(
             iter_data_loader, isval=True, num_steps=1
         )
@@ -200,7 +209,8 @@ def val(epoch, data_loader, model, log_path, plotter):
                 {"val": t_losses[l].cpu().mean().detach().item()},
                 epoch * 50 + iteration,
             )
-
+            
+    print("\n==================================================")
     return {l: losses[l] / float(iteration) for l in losses.keys()}
 
 
