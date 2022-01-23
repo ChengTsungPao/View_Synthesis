@@ -222,6 +222,7 @@ class RealEstate10K(data.Dataset):
         try:
             imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
             download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index], stride=1, remove_video=True)
+            print("Download Video and Convert Image Finish !!!")
         except:
             pass
 
