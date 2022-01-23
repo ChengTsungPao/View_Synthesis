@@ -398,3 +398,6 @@ if __name__ == "__main__":
         model = BaseModel(model, opts)
 
         run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile)
+
+    print("\nModel Save Path => ", opts.model_epoch_path)
+    print()
