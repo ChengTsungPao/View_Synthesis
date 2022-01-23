@@ -26,6 +26,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     file_name = f.split('\\')[-1].split('.')[0]  #the file name and remark
     out_f = os.path.join(out_dir,file_name)
     if os.path.exists(out_f): 
+        print(out_f)
         print('the file exists. skip....')
     video_txt = open(f)
     content = video_txt.readlines()
