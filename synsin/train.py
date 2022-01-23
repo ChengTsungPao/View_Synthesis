@@ -284,7 +284,8 @@ def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
     )
 
     print("Loaded train dataset ...", flush=True)
-
+    
+    epoch = opts.continue_epoch
     for epoch in range(opts.continue_epoch, opts.max_epoch):
         print("Starting epoch %d" % epoch, flush=True)
         opts.continue_epoch = epoch
