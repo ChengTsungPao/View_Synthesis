@@ -270,8 +270,7 @@ def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
     elif opts.resume:
         print("WARNING: Model path does not exist?? ")
         print(opts.model_epoch_path)
-    print(model)
-    return
+    
     print("Loading train dataset ....", flush=True)
     train_set = Dataset("train", opts)
 
