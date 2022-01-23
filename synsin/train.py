@@ -93,9 +93,9 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     # Cheng Fix
-    date = time.localtime()
     iteration_number = 30 + 1
     for iteration in range(1, min(iteration_number, len(data_loader))):
+        date = time.localtime()
         print()
         print(time.strftime("%Y-%m-%d %H:%M:%S", date))
         print("iteration = {} (epoch = {})".format(iteration, epoch))
