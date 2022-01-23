@@ -156,7 +156,8 @@ class RealEstate10K(data.Dataset):
                 imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
                 if not os.path.exists(imageSaveFolder):
                     os.makedirs(imageSaveFolder)
-                plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
+                if not os.path.exists(imageSaveFolder + str(int(time)) + ".png"):
+                    plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
             except:
                 pass
 
