@@ -25,8 +25,6 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     print("video ID = {}".format(videotxtFilename))
     file_name = f.split('\\')[-1].split('.')[0]  #the file name and remark
     out_f = os.path.join(out_dir,file_name)
-    if os.path.exists(out_f + '.mp4'): 
-        print('the file exists. skip....')
     video_txt = open(f)
     content = video_txt.readlines()
     url = content[0]   #the url file
@@ -38,6 +36,9 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
                 output_file = ydl.prepare_filename(info)
         except:
             print("An exception occurred, maybe because of the downloading limits of youtube.")
+    else:
+        print(out_f + '.mp4')
+        print('the file exists. skip....')
     #if video is already downloaded, start extracting frames
     os.makedirs(out_f, exist_ok=True)
     if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
