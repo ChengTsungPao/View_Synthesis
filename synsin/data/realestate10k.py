@@ -185,7 +185,10 @@ class RealEstate10K(data.Dataset):
 
         rgbs = []
         cameras = []
-        for i in range(0, self.num_views):
+        # Cheng Fix
+        # for i in range(0, self.num_views):
+        i = 0
+        while i < self.num_views:
 
             if i == 0:
                 t_index = image_index
@@ -211,7 +214,7 @@ class RealEstate10K(data.Dataset):
 
             intrinsics = frames[t_index, 1:7]
             extrinsics = frames[t_index, 7:]
-            
+
             origK = np.array(
                 [
                     [intrinsics[0], 0, intrinsics[2]],
@@ -240,6 +243,8 @@ class RealEstate10K(data.Dataset):
                     "Kinv": self.invK,
                 }
             ]
+
+            i += 1
 
         return {"images": rgbs, "cameras": cameras}
 
