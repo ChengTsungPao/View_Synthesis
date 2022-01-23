@@ -140,7 +140,7 @@ class RealEstate10K(data.Dataset):
         # Load text file containing frame information
 
         # Cheng fx
-        print("RealEstate10K Loading ... (__getitem__)")
+        # print("RealEstate10K Loading ... (__getitem__)")
         frames = np.loadtxt(
             self.base_file
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),

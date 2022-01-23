@@ -89,9 +89,12 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     # Cheng Fix
+    date = time.localtime()
     iteration_number = 30 + 1
     for iteration in range(1, min(iteration_number, len(data_loader))):
-        print("\niteration = {} (epoch = {})".format(iteration, epoch))
+        print()
+        print(date)
+        print("iteration = {} (epoch = {})".format(iteration, epoch))
 
         t_losses, output_image = model(
             iter_data_loader, isval=False, num_steps=opts.num_accumulations
