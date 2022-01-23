@@ -88,7 +88,9 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     losses = {}
     iter_data_loader = iter(data_loader)
 
-    for iteration in range(1, min(501, len(data_loader))):
+    # Cheng Fix
+    iteration_number = 30 + 1
+    for iteration in range(1, min(iteration_number, len(data_loader))):
         print("\niteration = {} (epoch = {})".format(iteration, epoch))
 
         t_losses, output_image = model(

@@ -105,12 +105,8 @@ class BaseModel(nn.Module):
         self.optimizer_G.zero_grad()
         if self.use_discriminator:
             all_output_images = []
-            print(len(dataloader))
             for j in range(0, num_steps):
-                ret = next(dataloader)
-                print("here =======================================")
-                t_losses, output_images = self.model(ret)
-                print("there =======================================", t_losses)
+                t_losses, output_images = self.model(next(dataloader))
                 g_losses = self.netD.run_generator_one_step(
                     output_images["PredImg"], output_images["OutputImg"]
                 )

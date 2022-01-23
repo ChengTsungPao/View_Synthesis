@@ -148,14 +148,17 @@ class RealEstate10K(data.Dataset):
         )
 
         # # Cheng fx
+        import os
+        import matplotlib.pyplot as plt
         for line in frames:
-            time = line[0]
-            import os
-            import matplotlib.pyplot as plt
-            imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-            if not os.path.exists(imageSaveFolder):
-                os.makedirs(imageSaveFolder)
-            plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
+            try:
+                time = line[0]
+                imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                if not os.path.exists(imageSaveFolder):
+                    os.makedirs(imageSaveFolder)
+                plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
+            except:
+                pass
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
