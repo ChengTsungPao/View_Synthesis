@@ -197,17 +197,21 @@ class RealEstate10K(data.Dataset):
                     self.rng.randint(image_indices.shape[0])
                 ]
             # Cheng Fix
-            image = Image.open(
-                self.base_file
-                + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-                + str(int(frames[t_index, 0]))
-                + ".png"
-            ).convert('RGB')
-            rgbs += [self.input_transform(image)]
+            try:
+                image = Image.open(
+                    self.base_file
+                    + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                    + str(int(frames[t_index, 0]))
+                    + ".png"
+                ).convert('RGB')
+                rgbs += [self.input_transform(image)]
+
+            except:
+                continue
 
             intrinsics = frames[t_index, 1:7]
             extrinsics = frames[t_index, 7:]
-
+            
             origK = np.array(
                 [
                     [intrinsics[0], 0, intrinsics[2]],
