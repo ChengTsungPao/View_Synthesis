@@ -13,8 +13,8 @@ mp4_files = set(glob(path + "*.mp4"))
 
 printLine(all_files - txt_files)
 print("=========================================")
-# for path in sorted(all_files - txt_files - mp4_files):
-#     if os.path.exists(path + ".mp4"):
-#         continue
+for path in sorted(all_files - txt_files - mp4_files):
+    if not os.path.exists(path + ".mp4"):
+        continue
 
-#     os.system("rm -rf " + path)
+    os.system("scp -r {} abaozheng6@140.109.21.232:/home/abaozheng6/Temp".format(path))
