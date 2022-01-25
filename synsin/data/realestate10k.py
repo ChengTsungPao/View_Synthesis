@@ -91,7 +91,7 @@ class RealEstate10K(data.Dataset):
     ):
         # Now go through the dataset
         self.imageset = np.loadtxt(
-            opts.train_data_path + "/frames/%s/video_loc_20220126.txt" % "train",
+            opts.train_data_path + "/frames/%s/video_loc_all.txt" % "train",
             dtype=np.str,
         )
 
