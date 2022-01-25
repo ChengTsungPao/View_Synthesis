@@ -10,4 +10,4 @@ all_files = glob(path + "*")
 mp4_files = glob(path + "*.mp4")
 
 print(all_files)
-print(mp4_files)
+printLine(mp4_files)
