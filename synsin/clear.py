@@ -9,5 +9,5 @@ path = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/trai
 all_files = glob(path + "*")
 mp4_files = glob(path + "*.mp4")
 
-# print(all_files)
-printLine(mp4_files)
+printLine(all_files)
+# printLine(mp4_files)
