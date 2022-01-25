@@ -104,7 +104,7 @@ f.close()
 for index in range(len(all_file)):
 
     # try:
-    # imageSaveFolder = path
+    imageSaveFolder = path
     download_dataset(imageSaveFolder, imageSaveFolder, all_file[index])
     print("Download Video and Convert Image Finish !!! (video ID = {})".format(all_file[index]))
     # except:
