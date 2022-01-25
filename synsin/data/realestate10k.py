@@ -234,7 +234,8 @@ class RealEstate10K(data.Dataset):
             download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
             print("Download Video and Convert Image Finish !!!")
         except:
-            pass
+            print("Download Video and Convert Image Error !!!")
+            # pass
 
         
 
