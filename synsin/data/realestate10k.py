@@ -201,9 +201,10 @@ class RealEstate10K(data.Dataset):
         return {"images": rgbs, "cameras": cameras}
 
     def __getitem__(self, index):
+        import random
         while True:
             # index = self.rng.randint(self.imageset.shape[0])
-            index = np.randint(self.imageset.shape[0])
+            index = random.randint(self.imageset.shape[0])
             # index = index % self.imageset.shape[0]
             # Load text file containing frame information
 
