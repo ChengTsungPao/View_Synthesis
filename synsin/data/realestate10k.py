@@ -90,7 +90,7 @@ class RealEstate10K(data.Dataset):
     ):
         # Now go through the dataset
         self.imageset = np.loadtxt(
-            opts.train_data_path + "/frames/%s/video_loc.txt" % "train",
+            opts.train_data_path + "/frames/%s/video_loc_20220126.txt" % "train",
             dtype=np.str,
         )
 
@@ -203,8 +203,8 @@ class RealEstate10K(data.Dataset):
     def __getitem__(self, index):
         import random
         while True:
-            # index = self.rng.randint(self.imageset.shape[0])
-            index = random.randint(0, self.imageset.shape[0])
+            index = self.rng.randint(self.imageset.shape[0])
+            # index = random.randint(0, self.imageset.shape[0])
             # index = index % self.imageset.shape[0]
             # Load text file containing frame information
 
