@@ -23,7 +23,7 @@ for path in sorted(txt_files):
 
         try:
             yt = YouTube(url)
-            p = yt.streams.first().download()
+            p = yt.streams.get_highest_resolution().download()
             print("Download: {} Compete => {}".format(url, p))
             break
         except:
