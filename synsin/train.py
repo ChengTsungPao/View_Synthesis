@@ -93,7 +93,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     # Cheng Fix
-    iteration_number = 30 + 1
+    iteration_number = 500 + 1
     for iteration in range(1, min(iteration_number, len(data_loader))):
         date = time.localtime()
         print()
@@ -284,7 +284,7 @@ def run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile):
     )
 
     print("Loaded train dataset ...", flush=True)
-    
+
     epoch = opts.continue_epoch
     for epoch in range(opts.continue_epoch, opts.max_epoch):
         print("Starting epoch %d" % epoch, flush=True)
