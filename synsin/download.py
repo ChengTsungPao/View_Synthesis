@@ -102,10 +102,11 @@ all_file = f.readlines()
 f.close()
 
 for index in range(len(all_file)):
+    filename = all_file[index].split("\n")[0]
 
     try:
         imageSaveFolder = path.split("\n")[0]
-        download_dataset(imageSaveFolder, imageSaveFolder, all_file[index])
-        print("Download Video and Convert Image Finish !!! (video ID = {})".format(all_file[index]))
+        download_dataset(imageSaveFolder, imageSaveFolder, filename)
+        print("Download Video and Convert Image Finish !!! (video ID = {})".format(filename))
     except:
-        print("Download Video and Convert Image Error !!! (video ID = {})".format(all_file[index]))
+        print("Download Video and Convert Image Error !!! (video ID = {})".format(filename))
