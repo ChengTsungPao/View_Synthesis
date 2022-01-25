@@ -15,7 +15,6 @@ mp4_files = set(glob(path + "*.mp4"))
 printLine(all_files - txt_files)
 print("=========================================")
 
-count = 0
 for path in sorted(txt_files):
     if not os.path.exists(path.split(".txt")[0] + ".mp4"):
         f = open(path, "r")
