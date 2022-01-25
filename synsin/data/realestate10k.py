@@ -22,7 +22,7 @@ import numpy as np
 
 def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=False):
     f = os.path.join(txt_dir, videotxtFilename + '.txt')
-    print("video ID = {}".format(videotxtFilename))
+    # print("video ID = {}".format(videotxtFilename))
     file_name = f.split('\\')[-1].split('.')[0]  #the file name and remark
     out_f = os.path.join(out_dir,file_name)
     video_txt = open(f)
@@ -232,10 +232,12 @@ class RealEstate10K(data.Dataset):
 
             try:
                 imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
+                print("video ID = {}".format(self.imageset[index]))
                 download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
                 print("Download Video and Convert Image Finish !!!")
                 break
             except:
+                print("video ID = {}".format(self.imageset[index]))
                 print("Download Video and Convert Image Error !!!")
                 # pass
 
