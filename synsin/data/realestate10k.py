@@ -204,7 +204,7 @@ class RealEstate10K(data.Dataset):
         import random
         while True:
             # index = self.rng.randint(self.imageset.shape[0])
-            index = random.randint(self.imageset.shape[0])
+            index = random.randint(0, self.imageset.shape[0])
             # index = index % self.imageset.shape[0]
             # Load text file containing frame information
 
