@@ -25,7 +25,7 @@ for path in sorted(txt_files):
         try:
             yt = YouTube(url)
             yt.streams.first().download()
-
             print("Download: {} Compete".format(url))
+            break
         except:
             print("Can not download {} !!!".format(path))
