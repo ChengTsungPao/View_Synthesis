@@ -202,7 +202,8 @@ class RealEstate10K(data.Dataset):
 
     def __getitem__(self, index):
         while True:
-            index = self.rng.randint(self.imageset.shape[0])
+            # index = self.rng.randint(self.imageset.shape[0])
+            index = np.randint(self.imageset.shape[0])
             # index = index % self.imageset.shape[0]
             # Load text file containing frame information
 
