@@ -29,22 +29,22 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     content = video_txt.readlines()
     url = content[0]   #the url file
     if not os.path.exists(out_f + '.mp4'):
-        try:
-            # ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
-            # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            #     info = ydl.extract_info(url, download=True)
-            #     output_file = ydl.prepare_filename(info)
+        # try:
+        # ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
+        # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        #     info = ydl.extract_info(url, download=True)
+        #     output_file = ydl.prepare_filename(info)
 
-            f = open(out_f + ".txt", "r")
-            url = f.readline()
-            f.close()
+        f = open(out_f + ".txt", "r")
+        url = f.readline()
+        f.close()
 
-            yt = YouTube(url)
-            output_file = yt.streams.get_highest_resolution().download()
-            print("Download: {} Compete => {}".format(url, output_file))
+        yt = YouTube(url)
+        output_file = yt.streams.get_highest_resolution().download()
+        print("Download: {} Compete => {}".format(url, output_file))
 
-        except:
-            print("An exception occurred, maybe because of the downloading limits of youtube.")
+        # except:
+        #     print("An exception occurred, maybe because of the downloading limits of youtube.")
     else:
         print('The file {} exists. skip....'.format(out_f + '.mp4'))
     #if video is already downloaded, start extracting frames
