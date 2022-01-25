@@ -101,12 +101,28 @@ f = open(path + "video_loc_all.txt", "r")
 all_file = f.readlines()
 f.close()
 
-for index in range(len(all_file)):
-    filename = all_file[index].split("\n")[0]
+def download(partial_file):
 
-    try:
-        imageSaveFolder = path.split("\n")[0]
-        download_dataset(imageSaveFolder, imageSaveFolder, filename)
-        print("Download Video and Convert Image Finish !!! (video ID = {})".format(filename))
-    except:
-        print("Download Video and Convert Image Error !!! (video ID = {})".format(filename))
+    for filename in partial_file:
+        filename = filename.split("\n")[0]
+
+        try:
+            imageSaveFolder = path.split("\n")[0]
+            download_dataset(imageSaveFolder, imageSaveFolder, filename)
+            print("Download Video and Convert Image Finish !!! (video ID = {})".format(filename))
+        except:
+            print("Download Video and Convert Image Error !!! (video ID = {})".format(filename))
+
+
+from multiprocessing import Process
+
+process_num = 8
+count = (len(all_file) // process_num) + 1
+
+p = [0 for _ in range(process_num)]
+for i in range(process_num):
+    p[i] = Process(target = download, args=(all_file[count * i: count * (i + 1)],))
+    p[i].start()
+
+for i in range(process_num):
+    p[i].join()
