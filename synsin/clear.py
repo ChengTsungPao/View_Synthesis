@@ -17,4 +17,4 @@ for path in sorted(all_files - txt_files - mp4_files):
     if os.path.exists(path + ".mp4"):
         continue
 
-    os.system("rm -rf" + path)
+    os.system("rm -rf " + path)
