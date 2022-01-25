@@ -103,13 +103,9 @@ f.close()
 
 for index in range(len(all_file)):
 
-    try:
-        imageSaveFolder = path
-        print("video ID = {}".format(all_file[index]))
-        download_dataset(imageSaveFolder, imageSaveFolder, all_file[index])
-        print("Download Video and Convert Image Finish !!!")
-        break
-    except:
-        print("video ID = {}".format(all_file[index]))
-        print("Download Video and Convert Image Error !!!")
-        # pass
+    # try:
+    # imageSaveFolder = path
+    download_dataset(imageSaveFolder, imageSaveFolder, all_file[index])
+    print("Download Video and Convert Image Finish !!! (video ID = {})".format(all_file[index]))
+    # except:
+    #     print("Download Video and Convert Image Error !!! (video ID = {})".format(all_file[index]))
