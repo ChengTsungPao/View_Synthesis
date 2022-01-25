@@ -1,4 +1,9 @@
 from pytube import YouTube
 
-yt = YouTube("")
-yt.streams.first().download()
+f = open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0003a9bce989e532.txt", "r")
+url = f.readline()
+f.close()
+print(url)
+
+# yt = YouTube("")
+# yt.streams.first().download()
