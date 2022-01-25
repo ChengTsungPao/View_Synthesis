@@ -1,11 +1,31 @@
 from pytube import YouTube
+import os
+from glob import glob
 
-f = open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0003a9bce989e532.txt", "r")
-url = f.readline()
-f.close()
+def printLine(files):
+    for f in sorted(files):
+        print(f)
+
+path = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/"
+all_files = set(glob(path + "*"))
+txt_files = set(glob(path + "*.txt"))
+mp4_files = set(glob(path + "*.mp4"))
 
 
-yt = YouTube(url)
-yt.streams.first().download()
+printLine(all_files - txt_files)
+print("=========================================")
 
-print("Download: {} Compete".format(url))
+count = 0
+for path in sorted(txt_files):
+    if not os.path.exists(path.split(".txt")[0] + ".mp4"):
+        f = open(path, "r")
+        url = f.readline()
+        f.close()
+
+        try:
+            yt = YouTube(url)
+            yt.streams.first().download()
+
+            print("Download: {} Compete".format(url))
+        except:
+            print("Can not download {} !!!".format(path))
