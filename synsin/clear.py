@@ -11,10 +11,10 @@ txt_files = set(glob(path + "*.txt"))
 mp4_files = set(glob(path + "*.mp4"))
 
 
-printLine(mp4_files)
+printLine(all_files)
 print("=========================================")
-for path in sorted(all_files - txt_files - mp4_files):
-    if os.path.exists(path + ".mp4"):
-        continue
+# for path in sorted(all_files - txt_files - mp4_files):
+#     if os.path.exists(path + ".mp4"):
+#         continue
 
-    os.system("rm -rf " + path)
+#     os.system("rm -rf " + path)
