@@ -277,7 +277,8 @@ class ArgumentParser:
         training.add_argument(
             "--log-dir",
             type=str,
-            default="/home/abaozheng6/View_Synthesis/synsin/logging/viewsynthesis3d/%s/",
+            # default="/home/abaozheng6/View_Synthesis/synsin/logging/viewsynthesis3d/%s/",
+            default="/home/abaozheng6/View_Synthesis/synsin_bigger_train/View_Synthesis/synsin/logging/viewsynthesis3d/%s/",
         )
         training.add_argument("--batch-size", type=int, default=16)
         training.add_argument("--continue_epoch", type=int, default=0)
