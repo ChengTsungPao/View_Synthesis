@@ -11,5 +11,5 @@ for i in range(removeNum):
     print(mp4_file)
     print(mp4_folder)
 
-    # os.system("rm {}".format(mp4_file))
-    # os.system("rm -rf {}".format(mp4_folder))
+    os.system("rm {}".format(mp4_file))
+    os.system("rm -rf {}".format(mp4_folder))
