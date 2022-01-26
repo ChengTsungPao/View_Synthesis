@@ -291,6 +291,12 @@ class RealEstate10K(data.Dataset):
                 ]
             # Cheng Fix
             try:
+                print(
+                    self.base_file
+                    + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                    + str(int(frames[t_index, 0]))
+                    + ".png"
+                )
                 image = Image.open(
                     self.base_file
                     + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
