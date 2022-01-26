@@ -91,7 +91,7 @@ class RealEstate10K(data.Dataset):
     ):
         # Now go through the dataset
         self.imageset = np.loadtxt(
-            opts.train_data_path + "/frames/%s/video_loc_20220126.txt" % "train",
+            opts.train_data_path + "/frames/%s/video_loc_20220127.txt" % "train",
             dtype=np.str,
         )
 
@@ -203,46 +203,46 @@ class RealEstate10K(data.Dataset):
 
     def __getitem__(self, index):
         import random
-        while True:
-            index = self.rng.randint(self.imageset.shape[0])
-            # index = random.randint(0, self.imageset.shape[0])
-            # index = index % self.imageset.shape[0]
-            # Load text file containing frame information
+        # while True:
+        index = self.rng.randint(self.imageset.shape[0])
+        # index = random.randint(0, self.imageset.shape[0])
+        # index = index % self.imageset.shape[0]
+        # Load text file containing frame information
 
-            # Cheng fx
-            # print("RealEstate10K Loading ... (__getitem__)")
-            frames = np.loadtxt(
-                self.base_file
-                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
-                skiprows=1
-            )
+        # Cheng fx
+        # print("RealEstate10K Loading ... (__getitem__)")
+        frames = np.loadtxt(
+            self.base_file
+            + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
+            skiprows=1
+        )
 
             # # Cheng fx
 
             # Random Data Input
-            import os
-            import matplotlib.pyplot as plt
-            # for line in frames:
-            #     try:
-            #         time = line[0]
-            #         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-            #         if not os.path.exists(imageSaveFolder):
-            #             os.makedirs(imageSaveFolder)
-            #         if not os.path.exists(imageSaveFolder + str(int(time)) + ".png"):
-            #             plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
-            #     except:
-            #         pass
+            # import os
+            # import matplotlib.pyplot as plt
+            # # for line in frames:
+            # #     try:
+            # #         time = line[0]
+            # #         imageSaveFolder = self.base_file + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+            # #         if not os.path.exists(imageSaveFolder):
+            # #             os.makedirs(imageSaveFolder)
+            # #         if not os.path.exists(imageSaveFolder + str(int(time)) + ".png"):
+            # #             plt.imsave(imageSaveFolder + str(int(time)) + ".png", np.random.rand(500, 500, 3))
+            # #     except:
+            # #         pass
 
-            try:
-                imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
-                print("video ID = {}".format(self.imageset[index]))
-                download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
-                print("Download Video and Convert Image Finish !!!")
-                break
-            except:
-                print("video ID = {}".format(self.imageset[index]))
-                print("Download Video and Convert Image Error !!!")
-                # pass
+            # try:
+            #     imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
+            #     print("video ID = {}".format(self.imageset[index]))
+            #     download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
+            #     print("Download Video and Convert Image Finish !!!")
+            #     break
+            # except:
+            #     print("video ID = {}".format(self.imageset[index]))
+            #     print("Download Video and Convert Image Error !!!")
+            #     # pass
 
         
 
