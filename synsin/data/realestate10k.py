@@ -219,7 +219,8 @@ class RealEstate10K(data.Dataset):
             skiprows=1
         )
 
-        print(self.imageset[index])
+        self.imageset[index] = "c12fac3629f20e64"
+        print(self.imageset[index], frames.shape)
 
             # # Cheng fx
 
