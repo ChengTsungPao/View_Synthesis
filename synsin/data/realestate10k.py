@@ -64,7 +64,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         frame_file.write(line)
         if line == '\n': break
         print(line)
-        line = video_txt.readline()
+        # line = video_txt.readline()
         ts = line.split(' ')[0][:-3]  #extract the time stamp
         if ts == '': break
         print("222222222222222222222222222222222222")
