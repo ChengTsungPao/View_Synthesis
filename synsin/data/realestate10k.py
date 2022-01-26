@@ -247,7 +247,7 @@ class RealEstate10K(data.Dataset):
             #     print("Download Video and Convert Image Error !!!")
             #     # pass
 
-        
+        print(frames.shape)
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
@@ -293,12 +293,12 @@ class RealEstate10K(data.Dataset):
                 ]
             # Cheng Fix
             try:
-                print(
-                    self.base_file
-                    + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-                    + str(int(frames[t_index, 0]))
-                    + ".png"
-                )
+                # print(
+                #     self.base_file
+                #     + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                #     + str(int(frames[t_index, 0]))
+                #     + ".png"
+                # )
                 image = Image.open(
                     self.base_file
                     + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
