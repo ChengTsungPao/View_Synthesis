@@ -138,6 +138,16 @@ class RealEstate10K(data.Dataset):
         self.ANGLE_THRESH = 5
         self.TRANS_THRESH = 0.15
 
+        f = open("shape_test.txt", "w")
+        for index in range(len(self.imageset)):
+            frames = np.loadtxt(
+                self.base_file
+                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index])
+            )
+            print(frames.shape, self.imageset[index])
+            f.write(str(frames.shape) + " " + str(self.imageset[index]))
+        f.close()
+
     def __len__(self):
         return 2 ** 31
 
@@ -246,8 +256,6 @@ class RealEstate10K(data.Dataset):
             #     print("video ID = {}".format(self.imageset[index]))
             #     print("Download Video and Convert Image Error !!!")
             #     # pass
-
-        print(frames.shape, self.imageset[index])
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
