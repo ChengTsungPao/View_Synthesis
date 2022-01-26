@@ -138,17 +138,17 @@ class RealEstate10K(data.Dataset):
         self.ANGLE_THRESH = 5
         self.TRANS_THRESH = 0.15
 
-        f = open("shape_test.txt", "w")
-        for index in range(len(self.imageset)):
-            frames = np.loadtxt(
-                self.base_file
-                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
-                skiprows=1
-            )
-            if frames.shape == (19, ):
-                print(frames.shape, self.imageset[index])
-                f.write(str(frames.shape) + " " + str(self.imageset[index]))
-        f.close()
+        # f = open("shape_test.txt", "w")
+        # for index in range(len(self.imageset)):
+        #     frames = np.loadtxt(
+        #         self.base_file
+        #         + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
+        #         skiprows=1
+        #     )
+        #     if frames.shape == (19, ):
+        #         print(frames.shape, self.imageset[index])
+        #         f.write(str(frames.shape) + " " + str(self.imageset[index]))
+        # f.close()
 
     def __len__(self):
         return 2 ** 31
