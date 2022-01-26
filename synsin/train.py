@@ -383,15 +383,15 @@ if __name__ == "__main__":
         model = BaseModel(model, opts)
 
         # Allow for different image sizes
-        state_dict = model.state_dict()
-        pretrained_dict = {
-            k: v
-            for k, v in torch.load(opts.old_model)["state_dict"].items()
-            if not ("xyzs" in k) and not ("ones" in k)
-        }
-        state_dict.update(pretrained_dict)
+        # state_dict = model.state_dict()
+        # pretrained_dict = {
+        #     k: v
+        #     for k, v in torch.load(opts.old_model)["state_dict"].items()
+        #     if not ("xyzs" in k) and not ("ones" in k)
+        # }
+        # state_dict.update(pretrained_dict)
 
-        model.load_state_dict(state_dict)
+        # model.load_state_dict(state_dict)
 
         run(model, Dataset, log_path, plotter, CHECKPOINT_tempfile)
 
