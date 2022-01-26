@@ -28,7 +28,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     video_txt = open(f)
     content = video_txt.readlines()
     url = content[0]   #the url file
-    if not os.path.exists(out_f + '.mp4'):
+    if not os.path.exists(out_f + '.mp4') or 1 == 1:
         # try:
         # ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
         # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -204,19 +204,19 @@ class RealEstate10K(data.Dataset):
 
     def __getitem__(self, index):
         import random
-        # while True:
-        index = self.rng.randint(self.imageset.shape[0])
-        # index = random.randint(0, self.imageset.shape[0])
-        # index = index % self.imageset.shape[0]
-        # Load text file containing frame information
+        while True:
+            index = self.rng.randint(self.imageset.shape[0])
+            # index = random.randint(0, self.imageset.shape[0])
+            # index = index % self.imageset.shape[0]
+            # Load text file containing frame information
 
-        # Cheng fx
-        # print("RealEstate10K Loading ... (__getitem__)")
-        frames = np.loadtxt(
-            self.base_file
-            + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
-            skiprows=1
-        )
+            # Cheng fx
+            # print("RealEstate10K Loading ... (__getitem__)")
+            frames = np.loadtxt(
+                self.base_file
+                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
+                skiprows=1
+            )
 
             # # Cheng fx
 
@@ -234,16 +234,16 @@ class RealEstate10K(data.Dataset):
             # #     except:
             # #         pass
 
-            # try:
-            #     imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
-            #     print("video ID = {}".format(self.imageset[index]))
-            #     download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
-            #     print("Download Video and Convert Image Finish !!!")
-            #     break
-            # except:
-            #     print("video ID = {}".format(self.imageset[index]))
-            #     print("Download Video and Convert Image Error !!!")
-            #     # pass
+            try:
+                imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
+                print("video ID = {}".format(self.imageset[index]))
+                download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
+                print("Download Video and Convert Image Finish !!!")
+                break
+            except:
+                print("video ID = {}".format(self.imageset[index]))
+                print("Download Video and Convert Image Error !!!")
+                # pass
 
         
 
