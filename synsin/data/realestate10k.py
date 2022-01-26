@@ -47,7 +47,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         #     print("An exception occurred, maybe because of the downloading limits of youtube.")
     else:
         print('The file {} exists. skip....'.format(out_f + '.mp4'))
-        return
+        # return
     #if video is already downloaded, start extracting frames
     os.makedirs(out_f, exist_ok=True)
     if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
