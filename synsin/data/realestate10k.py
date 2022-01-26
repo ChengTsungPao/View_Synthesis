@@ -219,6 +219,8 @@ class RealEstate10K(data.Dataset):
             skiprows=1
         )
 
+        print(self.imageset[index])
+
             # # Cheng fx
 
             # Random Data Input
