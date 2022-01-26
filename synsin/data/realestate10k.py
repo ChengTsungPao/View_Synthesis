@@ -69,6 +69,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         success,image = vidcap.read()
         if success:
             # Cheng Fix
+            print(videoTime)
             cv2.imwrite(out_f + '/' + str(videoTime) + '.png', image)     # save frame as JPEG file
             frame_ind += stride
     frame_file.close()
