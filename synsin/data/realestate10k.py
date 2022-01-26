@@ -63,12 +63,12 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         print("Convert Time = {} to Image".format(videoTime))
         frame_file.write(line)
         if line == '\n': break
+        print(line)
         line = video_txt.readline()
         ts = line.split(' ')[0][:-3]  #extract the time stamp
         if ts == '': break
         vidcap.set(cv2.CAP_PROP_POS_MSEC,int(ts))      # just cue to 20 sec. position
         success,image = vidcap.read()
-        print(success)
         if success:
             # Cheng Fix
             print(videoTime)
