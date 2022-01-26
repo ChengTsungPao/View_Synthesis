@@ -145,8 +145,9 @@ class RealEstate10K(data.Dataset):
                 + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
                 skiprows=1
             )
-            print(frames.shape, self.imageset[index])
-            f.write(str(frames.shape) + " " + str(self.imageset[index]))
+            if frames.shape == (19, ):
+                print(frames.shape, self.imageset[index])
+                f.write(str(frames.shape) + " " + str(self.imageset[index]))
         f.close()
 
     def __len__(self):
