@@ -63,11 +63,9 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         print("Convert Time = {} to Image".format(videoTime))
         frame_file.write(line)
         if line == '\n': break
-        print(line)
         # line = video_txt.readline()
         ts = line.split(' ')[0][:-3]  #extract the time stamp
         if ts == '': break
-        print("222222222222222222222222222222222222")
         vidcap.set(cv2.CAP_PROP_POS_MSEC,int(ts))      # just cue to 20 sec. position
         success,image = vidcap.read()
         if success:
@@ -221,9 +219,6 @@ class RealEstate10K(data.Dataset):
             + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
             skiprows=1
         )
-
-        self.imageset[index] = "c12fac3629f20e64"
-        print(self.imageset[index], frames.shape)
 
             # # Cheng fx
 
