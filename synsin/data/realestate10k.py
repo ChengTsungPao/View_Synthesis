@@ -28,26 +28,26 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     video_txt = open(f)
     content = video_txt.readlines()
     url = content[0]   #the url file
-    if not os.path.exists(out_f + '.mp4'):
+    # if not os.path.exists(out_f + '.mp4'):
         # try:
         # ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
         # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         #     info = ydl.extract_info(url, download=True)
         #     output_file = ydl.prepare_filename(info)
 
-        f = open(out_f + ".txt", "r")
-        url = f.readline()
-        f.close()
+    f = open(out_f + ".txt", "r")
+    url = f.readline()
+    f.close()
 
-        yt = YouTube(url)
-        output_file = yt.streams.get_highest_resolution().download()
-        print("Download: {} Compete => {}".format(url, output_file))
+    yt = YouTube(url)
+    output_file = yt.streams.get_highest_resolution().download()
+    print("Download: {} Compete => {}".format(url, output_file))
 
         # except:
         #     print("An exception occurred, maybe because of the downloading limits of youtube.")
-    else:
-        print('The file {} exists. skip....'.format(out_f + '.mp4'))
-        return
+    # else:
+    #     print('The file {} exists. skip....'.format(out_f + '.mp4'))
+    #     return
     #if video is already downloaded, start extracting frames
     os.makedirs(out_f, exist_ok=True)
     if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
@@ -290,23 +290,26 @@ class RealEstate10K(data.Dataset):
                     self.rng.randint(image_indices.shape[0])
                 ]
             # Cheng Fix
-            # try:
-            print(
-                self.base_file
-                + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-                + str(int(frames[t_index, 0]))
-                + ".png"
-            )
-            image = Image.open(
-                self.base_file
-                + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
-                + str(int(frames[t_index, 0]))
-                + ".png"
-            ).convert('RGB')
-            rgbs += [self.input_transform(image)]
+            try:
+                print(
+                    self.base_file
+                    + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                    + str(int(frames[t_index, 0]))
+                    + ".png"
+                )
+                image = Image.open(
+                    self.base_file
+                    + "/frames/%s/%s/" % (self.dataset, self.imageset[index])
+                    + str(int(frames[t_index, 0]))
+                    + ".png"
+                ).convert('RGB')
+                rgbs += [self.input_transform(image)]
 
-            # except:
-            #     continue
+            except:
+                imageSaveFolder = self.base_file + "/frames/%s/" % (self.dataset)
+                print("video ID = {}".format(self.imageset[index]))
+                download_dataset(imageSaveFolder, imageSaveFolder, self.imageset[index])
+                continue
 
             intrinsics = frames[t_index, 1:7]
             extrinsics = frames[t_index, 7:]
