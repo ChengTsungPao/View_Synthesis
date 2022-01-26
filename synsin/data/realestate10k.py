@@ -142,7 +142,8 @@ class RealEstate10K(data.Dataset):
         for index in range(len(self.imageset)):
             frames = np.loadtxt(
                 self.base_file
-                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index])
+                + "/frames/%s/%s.txt" % (self.dataset, self.imageset[index]),
+                skiprows=1
             )
             print(frames.shape, self.imageset[index])
             f.write(str(frames.shape) + " " + str(self.imageset[index]))
