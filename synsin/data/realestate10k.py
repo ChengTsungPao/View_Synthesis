@@ -47,11 +47,11 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         #     print("An exception occurred, maybe because of the downloading limits of youtube.")
     else:
         print('The file {} exists. skip....'.format(out_f + '.mp4'))
-        # return
+        return
     #if video is already downloaded, start extracting frames
     os.makedirs(out_f, exist_ok=True)
     if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
-    # os.rename(output_file, os.path.join(out_f, file_name + '.mp4'))
+    os.rename(output_file, os.path.join(out_f, file_name + '.mp4'))
     line = url
     vidcap = cv2.VideoCapture(os.path.join(out_f, file_name + '.mp4'))
     frame_ind = 1
@@ -62,7 +62,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
         print("Convert Time = {} to Image".format(videoTime))
         frame_file.write(line)
         if line == '\n': break
-        #line = video_txt.readline()
+        line = video_txt.readline()
         ts = line.split(' ')[0][:-3]  #extract the time stamp
         if ts == '': break
         vidcap.set(cv2.CAP_PROP_POS_MSEC,int(ts))      # just cue to 20 sec. position
