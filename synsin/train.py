@@ -93,63 +93,70 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     # Cheng Fix
-    iteration_number = 1 + 1
-    for iteration in range(1, min(iteration_number, len(data_loader))):
+    iteration_number = 500 + 1
+    # for iteration in range(1, min(iteration_number, len(data_loader))):
+    iteration = 1
+    while iteration < min(iteration_number, len(data_loader)):
         date = time.localtime()
         print()
         print(time.strftime("%Y-%m-%d %H:%M:%S", date))
         print("Train iteration = {} (epoch = {})".format(iteration, epoch))
 
-        t_losses, output_image = model(
-            iter_data_loader, isval=False, num_steps=opts.num_accumulations
-        )
+        try:
+            t_losses, output_image = model(
+                iter_data_loader, isval=False, num_steps=opts.num_accumulations
+            )
 
-        for l in t_losses.keys():
-            if l in losses.keys():
-                losses[l] = t_losses[l].cpu().mean().detach().item() + losses[l]
-            else:
-                losses[l] = t_losses[l].cpu().mean().detach().item()
-        if iteration % 250 == 0 or iteration == 1:
-            for add_im in output_image.keys():
-                if iteration == 1 and os.environ['DEBUG']:
+            for l in t_losses.keys():
+                if l in losses.keys():
+                    losses[l] = t_losses[l].cpu().mean().detach().item() + losses[l]
+                else:
+                    losses[l] = t_losses[l].cpu().mean().detach().item()
+            if iteration % 250 == 0 or iteration == 1:
+                for add_im in output_image.keys():
+                    if iteration == 1 and os.environ['DEBUG']:
 
-                    torchvision.utils.save_image(
-                        output_image[add_im][0:8, :, :, :].cpu().data,
-                        "./debug/Image_train/%d_%s.png" % (iteration, add_im),
-                        normalize=("Depth" in add_im),
+                        torchvision.utils.save_image(
+                            output_image[add_im][0:8, :, :, :].cpu().data,
+                            "./debug/Image_train/%d_%s.png" % (iteration, add_im),
+                            normalize=("Depth" in add_im),
+                        )
+                    
+                    plotter.add_image(
+                        "Image_train/%d_%s" % (iteration, add_im),
+                        torchvision.utils.make_grid(
+                            output_image[add_im][0:8, :, :, :].cpu().data,
+                            normalize=("Depth" in add_im),
+                        ),
+                        epoch,
                     )
-                
-                plotter.add_image(
-                    "Image_train/%d_%s" % (iteration, add_im),
-                    torchvision.utils.make_grid(
-                        output_image[add_im][0:8, :, :, :].cpu().data,
-                        normalize=("Depth" in add_im),
-                    ),
-                    epoch,
+
+            if iteration % 1 == 0:
+                str_to_print = "Train: Epoch {}: {}/{} with ".format(
+                    epoch, iteration, len(data_loader)
+                )
+                for l in losses.keys():
+                    str_to_print += " %s : %0.4f | " % (
+                        l,
+                        losses[l] / float(iteration),
+                    )
+                print(str_to_print, flush=True)
+
+            if SIGNAL_RECEIVED:
+                # checkpoint(model, opts.model_epoch_path, CHECKPOINT_tempfile)
+                trigger_job_requeue()
+                raise SystemExit
+
+            for l in t_losses.keys():
+                plotter.add_scalars(
+                    "%s_iter" % l,
+                    {"train": t_losses[l].cpu().mean().detach().item()},
+                    epoch * 500 + iteration,
                 )
 
-        if iteration % 1 == 0:
-            str_to_print = "Train: Epoch {}: {}/{} with ".format(
-                epoch, iteration, len(data_loader)
-            )
-            for l in losses.keys():
-                str_to_print += " %s : %0.4f | " % (
-                    l,
-                    losses[l] / float(iteration),
-                )
-            print(str_to_print, flush=True)
-
-        if SIGNAL_RECEIVED:
-            # checkpoint(model, opts.model_epoch_path, CHECKPOINT_tempfile)
-            trigger_job_requeue()
-            raise SystemExit
-
-        for l in t_losses.keys():
-            plotter.add_scalars(
-                "%s_iter" % l,
-                {"train": t_losses[l].cpu().mean().detach().item()},
-                epoch * 500 + iteration,
-            )
+            iteration += 1
+        except:
+            pass
 
     print("\n==================================================")
     return {l: losses[l] / float(iteration) for l in losses.keys()}
@@ -213,6 +220,7 @@ def val(epoch, data_loader, model, log_path, plotter):
                     {"val": t_losses[l].cpu().mean().detach().item()},
                     epoch * 50 + iteration,
                 )
+
             iteration += 1
         except:
             pass
