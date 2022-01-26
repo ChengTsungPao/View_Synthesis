@@ -9,7 +9,7 @@ export USE_SLURM=0
 python train.py --batch-size 16 --folder 'temp' --num_workers 1  \
          --resume --dataset 'realestate' --use_inv_z --accumulation 'alphacomposite' \
          --model_type 'zbuffer_pts' --refine_model_type 'resnet_256W8UpDown64'  \
-         --norm_G 'sync:spectral_batch' --gpu_ids 2,3 --render_ids 2 \
+         --norm_G 'sync:spectral_batch' --gpu_ids 2,3 --render_ids 1 \
          --suffix '' --normalize_image --lr 0.0001
 
 # How to run on KITTI
