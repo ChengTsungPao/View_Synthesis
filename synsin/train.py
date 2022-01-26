@@ -93,7 +93,7 @@ def train(epoch, data_loader, model, log_path, plotter, opts):
     iter_data_loader = iter(data_loader)
 
     # Cheng Fix
-    iteration_number = 500 + 1
+    iteration_number = 100 + 1
     # for iteration in range(1, min(iteration_number, len(data_loader))):
     iteration = 1
     while iteration < min(iteration_number, len(data_loader)):
