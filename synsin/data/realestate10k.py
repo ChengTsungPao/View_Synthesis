@@ -51,7 +51,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     #if video is already downloaded, start extracting frames
     os.makedirs(out_f, exist_ok=True)
     if not os.path.exists(output_file): output_file = output_file.replace('.mp4','.mkv')
-    os.rename(output_file, os.path.join(out_f, file_name + '.mp4'))
+    # os.rename(output_file, os.path.join(out_f, file_name + '.mp4'))
     line = url
     vidcap = cv2.VideoCapture(os.path.join(out_f, file_name + '.mp4'))
     frame_ind = 1
