@@ -92,7 +92,7 @@ class RealEstate10K(data.Dataset):
     ):
         # Now go through the dataset
         self.imageset = np.loadtxt(
-            opts.train_data_path + "/frames/%s/video_loc_20220126.txt" % "train",
+            opts.train_data_path + "/frames/%s/video_loc_20220127.txt" % "train",
             # "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/video_loc_20220127.txt",
             dtype=np.str,
         )
