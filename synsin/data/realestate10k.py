@@ -247,7 +247,7 @@ class RealEstate10K(data.Dataset):
             #     print("Download Video and Convert Image Error !!!")
             #     # pass
 
-        print(frames.shape)
+        print(frames.shape, self.imageset[index])
 
         image_index = self.rng.choice(frames.shape[0], size=(1,))[0]
 
