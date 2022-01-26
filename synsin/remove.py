@@ -6,9 +6,10 @@ paths = glob(path + "*.mp4")
 
 removeNum = 3000
 for i in range(removeNum):
-    folder = paths.split(".mp4")[0]
-    print(paths)
-    print(folder)
+    mp4_file = paths[i]
+    mp4_folder = paths[i].split(".mp4")[0]
+    print(mp4_file)
+    print(mp4_folder)
 
-    # os.system("rm {}".format(paths))
-    # os.system("rm -rf {}".format(folder))
+    # os.system("rm {}".format(mp4_file))
+    # os.system("rm -rf {}".format(mp4_folder))
