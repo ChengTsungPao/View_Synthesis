@@ -28,7 +28,7 @@ def download_dataset(txt_dir, out_dir, videotxtFilename, stride=1, remove_video=
     video_txt = open(f)
     content = video_txt.readlines()
     url = content[0]   #the url file
-    if not os.path.exists(out_f + '.mp4') or 1 == 1:
+    if not os.path.exists(out_f + '.mp4'):
         # try:
         # ydl_opts = {'outtmpl': '%(id)s.%(ext)s'}
         # with youtube_dl.YoutubeDL(ydl_opts) as ydl:
