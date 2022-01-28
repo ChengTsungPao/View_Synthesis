@@ -114,20 +114,40 @@ with torch.no_grad():
     pred_imgs = model_to_test.model.module.forward_angle(batch, [RT])
     depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-fig, axis = plt.subplots(1,3, figsize=(10,20))
-axis[0].axis('off')
-axis[1].axis('off')
-axis[2].axis('off')
+# fig, axis = plt.subplots(1,3, figsize=(10,20))
+# axis[0].axis('off')
+# axis[1].axis('off')
+# axis[2].axis('off')
 
-axis[0].imshow(im.permute(1,2,0) * 0.5 + 0.5)
-axis[0].set_title('Input Image')
-fig.savefig('Input_Image.png')
-axis[1].imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-axis[1].set_title('Generated Image')
-fig.savefig('Generated_Image.png')
-axis[2].imshow(depth.squeeze().cpu().clamp(max=0.04))
-axis[2].set_title('Predicted Depth')
-fig.savefig('Predicted_Image.png')
+# axis[0].imshow(im.permute(1,2,0) * 0.5 + 0.5)
+# axis[0].set_title('Input Image')
+# fig.savefig('Input_Image.png')
+# axis[1].imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
+# axis[1].set_title('Generated Image')
+# fig.savefig('Generated_Image.png')
+# axis[2].imshow(depth.squeeze().cpu().clamp(max=0.04))
+# axis[2].set_title('Predicted Depth')
+# fig.savefig('Predicted_Image.png')
+
+
+
+
+plt.title('Input Image')
+plt.axis('off')
+plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
+plt.savefig('Input_Image.png')
+
+plt.title('Generated Image')
+plt.axis('off')
+plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
+plt.savefig('Generated_Image.png')
+
+plt.title('Predicted Depth')
+plt.axis('off')
+plt.imshow(depth.squeeze().cpu().clamp(max=0.04))
+plt.savefig('Predicted_Image.png')
+
+
 print("Finish !!!")
 
 # In[ ]:
