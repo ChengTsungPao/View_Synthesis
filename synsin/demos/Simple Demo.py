@@ -135,17 +135,17 @@ with torch.no_grad():
 plt.title('Input Image')
 plt.axis('off')
 plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-plt.savefig('Input_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image.png')
 
 plt.title('Generated Image')
 plt.axis('off')
 plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-plt.savefig('Generated_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Generated_Image.png')
 
 plt.title('Predicted Depth')
 plt.axis('off')
 plt.imshow(depth.squeeze().cpu().clamp(max=0.04))
-plt.savefig('Predicted_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Predicted_Image.png')
 
 
 print("Finish !!!")
