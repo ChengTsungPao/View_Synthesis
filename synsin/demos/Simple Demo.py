@@ -128,7 +128,7 @@ fig.savefig('Generated_Image.png')
 axis[2].imshow(depth.squeeze().cpu().clamp(max=0.04))
 axis[2].set_title('Predicted Depth')
 fig.savefig('Predicted_Image.png')
-
+print("Finish !!!")
 
 # In[ ]:
 
