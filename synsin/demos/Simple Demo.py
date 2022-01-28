@@ -85,8 +85,26 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # Cheng Fix
-im = Image.open('/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg')
+
+index_of_path = int(input("number of path: ")) + 1
+
+path = [
+    "/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/52553000.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000465ebe46a98d2/240773867.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00066b3649cc07e5/129195733.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0008631059fd7ba6/170637133.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000d73d2405332df/86686000.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00028da87cc5a4c4/101601000.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0006e8e3eaa8cd39/198431567.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00087de44e487f80/100033283.png",
+    "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000e285b03f3fddf/46980000.png"
+]
+
+
+im = Image.open(path[index_of_path])
 im = transform(im)
+
 
 # Parameters for the transformation
 theta = -0.15
@@ -130,22 +148,20 @@ with torch.no_grad():
 # fig.savefig('Predicted_Image.png')
 
 
-
-
 plt.title('Input Image')
 plt.axis('off')
 plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png'.format(index_of_path))
 
 plt.title('Generated Image')
 plt.axis('off')
 plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Generated_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Generated_Image{}.png'.format(index_of_path))
 
 plt.title('Predicted Depth')
 plt.axis('off')
 plt.imshow(depth.squeeze().cpu().clamp(max=0.04))
-plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Predicted_Image.png')
+plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Predicted_Image{}.png'.format(index_of_path))
 
 
 print("Finish !!!")
