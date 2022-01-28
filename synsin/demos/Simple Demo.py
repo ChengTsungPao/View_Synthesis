@@ -121,13 +121,13 @@ axis[2].axis('off')
 
 axis[0].imshow(im.permute(1,2,0) * 0.5 + 0.5)
 axis[0].set_title('Input Image')
-axis[0].savefig('Input_Image.png')
+fig.savefig('Input_Image.png')
 axis[1].imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
 axis[1].set_title('Generated Image')
-axis[1].savefig('Generated_Image.png')
+fig.savefig('Generated_Image.png')
 axis[2].imshow(depth.squeeze().cpu().clamp(max=0.04))
 axis[2].set_title('Predicted Depth')
-axis[2].savefig('Predicted_Image.png')
+fig.savefig('Predicted_Image.png')
 
 
 # In[ ]:
