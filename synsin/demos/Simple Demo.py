@@ -177,7 +177,6 @@ def testTime():
         
 
         im = Image.open(imagePath)
-        t = time.perf_counter()
         im = transform(im)
         # Parameters for the transformation
         theta = -0.15
@@ -200,6 +199,7 @@ def testTime():
             }]
         }
 
+        t = time.perf_counter()
         # Generate a new view at the new transformation
         with torch.no_grad():
             pred_imgs = model_to_test.model.module.forward_angle(batch, [RT])
