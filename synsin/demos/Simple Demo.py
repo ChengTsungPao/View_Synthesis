@@ -174,11 +174,11 @@ def testTime():
 
     status = []
     for imagePath in imagePaths:
-        t = time.perf_counter()
+        
 
         im = Image.open(imagePath)
+        t = time.perf_counter()
         im = transform(im)
-
         # Parameters for the transformation
         theta = -0.15
         phi = -0.1
