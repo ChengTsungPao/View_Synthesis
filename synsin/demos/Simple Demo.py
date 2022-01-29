@@ -166,6 +166,56 @@ plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Predicted_Image{}.png'
 
 print("Finish !!!")
 
+
+def testTime():
+    from glob import glob
+    import time
+    imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/*.png")
+
+    status = []
+    for imagePath in imagePaths:
+        t = time.clock()
+
+        im = Image.open(imagePath)
+        im = transform(im)
+
+        # Parameters for the transformation
+        theta = -0.15
+        phi = -0.1
+        tx = 0
+        ty = 0
+        tz = 0.1
+
+        RT = torch.eye(4).unsqueeze(0)
+        # Set up rotation
+        RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+        # Set up translation
+        RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+
+        batch = {
+            'images' : [im.unsqueeze(0)],
+            'cameras' : [{
+                'K' : torch.eye(4).unsqueeze(0),
+                'Kinv' : torch.eye(4).unsqueeze(0)
+            }]
+        }
+
+        # Generate a new view at the new transformation
+        with torch.no_grad():
+            pred_imgs = model_to_test.model.module.forward_angle(batch, [RT])
+            # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
+
+        status.append(time.clock() - t)
+
+    import numpy as np
+    print(np.mean(status), len(status))
+
+testTime()
+        
+
+
+
+
 # In[ ]:
 
 
