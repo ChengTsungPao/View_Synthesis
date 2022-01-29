@@ -205,7 +205,9 @@ def testTime():
             pred_imgs = model_to_test.model.module.forward_angle(batch, [RT])
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-        status.append(time.perf_counter() - t)
+        tmp = time.perf_counter() - t
+        print(tmp)
+        status.append(tmp)
 
     import numpy as np
     print(np.mean(status), len(status))
