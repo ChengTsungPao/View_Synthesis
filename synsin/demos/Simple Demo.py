@@ -174,7 +174,7 @@ def testTime():
 
     status = []
     for imagePath in imagePaths:
-        t = time.clock()
+        t = time.perf_counter()
 
         im = Image.open(imagePath)
         im = transform(im)
@@ -205,7 +205,7 @@ def testTime():
             pred_imgs = model_to_test.model.module.forward_angle(batch, [RT])
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-        status.append(time.clock() - t)
+        status.append(time.perf_counter() - t)
 
     import numpy as np
     print(np.mean(status), len(status))
