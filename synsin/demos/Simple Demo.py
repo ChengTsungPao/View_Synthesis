@@ -151,12 +151,18 @@ with torch.no_grad():
 # axis[2].set_title('Predicted Depth')
 # fig.savefig('Predicted_Image.png')
 
-x = im.permute(1,2,0) * 0.5 + 0.5
-print(x.shape)
+
+print(im.shape)
 plt.title('Input Image')
 plt.axis('off')
 plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
 plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png'.format(index_of_path))
+
+from PIL import Image
+import numpy as np
+test = Image.open("Input_Image{}.png".format(index_of_path))
+print(np.shape(np.array(test)))
+
 
 plt.title('Generated Image')
 plt.axis('off')
