@@ -137,7 +137,7 @@ def testTime():
         status.append(tmp)
 
     import numpy as np
-    print(np.mean(status), len(status))
+    print(np.sum(status) / (len(status) * batch_size), len(status))
 
 testTime()
         
