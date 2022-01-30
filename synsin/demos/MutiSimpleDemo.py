@@ -85,7 +85,7 @@ def testTime():
     import time
     imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/*.png")
 
-    batch_size = 6
+    batch_size = 10
     status = []
     i = 0
     while i + batch_size < len(imagePaths):
