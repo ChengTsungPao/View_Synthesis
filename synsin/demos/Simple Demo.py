@@ -9,6 +9,10 @@
 
 # In[1]:
 
+# Cheng Fix
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "3" 
+
 
 # get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
