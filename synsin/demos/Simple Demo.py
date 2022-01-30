@@ -108,7 +108,6 @@ path = [
 
 im = Image.open(path[index_of_path])
 im = transform(im)
-print(im.shape)
 
 
 # Parameters for the transformation
@@ -152,7 +151,7 @@ with torch.no_grad():
 # axis[2].set_title('Predicted Depth')
 # fig.savefig('Predicted_Image.png')
 
-
+print(im.shape)
 plt.title('Input Image')
 plt.axis('off')
 plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
