@@ -152,22 +152,16 @@ with torch.no_grad():
 # fig.savefig('Predicted_Image.png')
 
 
-print(im.shape)
 plt.title('Input Image')
 plt.axis('off')
 plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
 plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png'.format(index_of_path))
 
-from PIL import Image
-import numpy as np
-test = Image.open("/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png".format(index_of_path))
-print(np.shape(np.array(test)))
-
-
 plt.title('Generated Image')
 plt.axis('off')
 plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
 plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Generated_Image{}.png'.format(index_of_path))
+print(pred_imgs[0].squeeze().cpu().shape)
 
 plt.title('Predicted Depth')
 plt.axis('off')
@@ -223,7 +217,7 @@ def testTime():
     import numpy as np
     print(np.mean(status), len(status))
 
-testTime()
+# testTime()
         
 
 
