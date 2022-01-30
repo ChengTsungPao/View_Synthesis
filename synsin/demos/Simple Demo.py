@@ -108,6 +108,7 @@ path = [
 
 im = Image.open(path[index_of_path])
 im = transform(im)
+print(im.shape)
 
 
 # Parameters for the transformation
