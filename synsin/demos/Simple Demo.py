@@ -90,7 +90,7 @@ transform = transforms.Compose([
 
 # Cheng Fix
 
-index_of_path = int(input("number of path: ")) + 1
+index_of_path = int(input("number of path: "))
 
 path = [
     "/home/abaozheng6/View_Synthesis/synsin/demos/im.jpg",
