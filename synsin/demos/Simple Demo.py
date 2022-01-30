@@ -43,7 +43,7 @@ torch.backends.cudnn.enabled = True
 
 # REALESTATE
 # Cheng Fix
-MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/zbufferpts.pth'
+MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/synsin.pth'
 
 
 BATCH_SIZE = 1
