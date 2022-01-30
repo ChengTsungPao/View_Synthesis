@@ -160,7 +160,7 @@ plt.savefig('/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png'.for
 
 from PIL import Image
 import numpy as np
-test = Image.open("Input_Image{}.png".format(index_of_path))
+test = Image.open("/home/abaozheng6/View_Synthesis/synsin/demos/Input_Image{}.png".format(index_of_path))
 print(np.shape(np.array(test)))
 
 
