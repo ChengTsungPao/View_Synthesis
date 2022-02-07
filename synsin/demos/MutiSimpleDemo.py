@@ -194,6 +194,14 @@ def testAcc():
             im = Image.open(imagePath)
             im = transform(im)
 
+            batch = {
+                'images' : [im.unsqueeze(0)],
+                'cameras' : [{
+                    'K' : torch.eye(4).unsqueeze(0),
+                    'Kinv' : torch.eye(4).unsqueeze(0)
+                }]
+            }
+
             ###############################################
             # Parameters for the transformation
             theta = -0.15
@@ -212,40 +220,34 @@ def testAcc():
             print(RTS)
             ###############################################
 
-            intrinsics = frame[1:7]
-            extrinsics = frame[7:]
+            # intrinsics = frame[1:7]
+            # extrinsics = frame[7:]
 
-            origK = np.array(
-                [
-                    [intrinsics[0], 0, intrinsics[2]],
-                    [0, intrinsics[1], intrinsics[3]],
-                    [0, 0, 1],
-                ],
-                dtype=np.float32,
-            )
-            offset = np.array(
-                [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
-                dtype=np.float32,
-            ) 
-            K = np.matmul(offset, origK)
+            # origK = np.array(
+            #     [
+            #         [intrinsics[0], 0, intrinsics[2]],
+            #         [0, intrinsics[1], intrinsics[3]],
+            #         [0, 0, 1],
+            #     ],
+            #     dtype=np.float32,
+            # )
+            # offset = np.array(
+            #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+            #     dtype=np.float32,
+            # ) 
+            # K = np.matmul(offset, origK)
 
-            origP = extrinsics.reshape(3, 4)
-            P = np.matmul(K, origP)  # Merge these together to match habitat
-            P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
-                np.float32
-            )
-            P[3, 3] = 1
-            P = torch.tensor([P])
-            RTS = [P] # [np.linalg.inv(P)]
-            print(RTS)
+            # origP = extrinsics.reshape(3, 4)
+            # P = np.matmul(K, origP)  # Merge these together to match habitat
+            # P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
+            #     np.float32
+            # )
+            # P[3, 3] = 1
+            # P = torch.tensor([P])
+            # RTS = [P] # [np.linalg.inv(P)]
+            # print(RTS)
 
-            batch = {
-                'images' : [im.unsqueeze(0)],
-                'cameras' : [{
-                    'K' : torch.eye(4).unsqueeze(0),
-                    'Kinv' : torch.eye(4).unsqueeze(0)
-                }]
-            }
+            ###############################################
 
             # Generate a new view at the new transformation
             with torch.no_grad():
