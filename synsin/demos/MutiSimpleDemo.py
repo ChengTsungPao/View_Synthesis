@@ -229,7 +229,6 @@ def testAcc():
 
             rotation_inverse = np.linalg.inv(rotation)
             translation_inverse = -rotation_inverse @ translation
-            translation_inverse = -translation
 
             # if index == 0:
             extrinsicMatrix = np.array([
@@ -246,7 +245,7 @@ def testAcc():
                 [                   0.0,                    0.0,                    0.0,                    1.0]
             ]).astype(np.float32)
 
-            RTS = [torch.tensor([extrinsicMatrix_inverse])]
+            RTS = [torch.tensor([extrinsicMatrix])]
             print(RTS)
 
             ###############################################
