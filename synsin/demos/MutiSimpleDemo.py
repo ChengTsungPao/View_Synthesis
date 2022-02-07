@@ -156,20 +156,16 @@ def testAcc():
 
     data_txt = [
         "0000cc6d8b108390",
-        # "000465ebe46a98d2",
-        # "00066b3649cc07e5",
-        # "0008631059fd7ba6",
-        # "000d73d2405332df",
-        # "00028da87cc5a4c4",
-        # "0006e8e3eaa8cd39",
-        # "00087de44e487f80",
-        # "000e285b03f3fddf"
+        "000465ebe46a98d2",
+        "00066b3649cc07e5",
+        "0008631059fd7ba6",
+        "000d73d2405332df",
+        "00028da87cc5a4c4",
+        "0006e8e3eaa8cd39",
+        "00087de44e487f80",
+        "000e285b03f3fddf"
     ]
 
-    PSNR_DATA = []
-    W_PSNR_DATA = []
-    SSIM_DATA = []
-    W_SSIM_DATA = []
 
     lossfcn = SynthesisLoss()
 
@@ -184,6 +180,11 @@ def testAcc():
 
         RTS = []
 
+        PSNR_DATA = []
+        W_PSNR_DATA = []
+        SSIM_DATA = []
+        W_SSIM_DATA = []
+        
         for index in range(len(frames) - 1):
 
             frame = frames[index]
@@ -284,10 +285,15 @@ def testAcc():
         #         print(imagePath)
         #         break
         # break
-    print("===========================")
-    print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(np.mean(PSNR_DATA), np.mean(W_PSNR_DATA)))
-    print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(np.mean(SSIM_DATA), np.mean(W_SSIM_DATA)))
-
+        print("===========================")
+        print("===========================")
+        print("===========================")
+        print(file_txt)
+        print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(np.mean(PSNR_DATA), np.mean(W_PSNR_DATA)))
+        print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(np.mean(SSIM_DATA), np.mean(W_SSIM_DATA)))
+        print("===========================")
+        print("===========================")
+        print("===========================")
 
 
 if __name__ == "__main__":
