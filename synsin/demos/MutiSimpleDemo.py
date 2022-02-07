@@ -250,7 +250,7 @@ def testAcc():
             ]).astype(np.float32)
 
             RTS = [torch.tensor([extrinsicMatrix])]
-            print(RTS)
+            # print(RTS)
 
             ###############################################
 
