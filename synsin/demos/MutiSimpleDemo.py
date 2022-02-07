@@ -190,7 +190,6 @@ def testAcc():
             }
 
             ###############################################
-            Parameters for the transformation
             theta = -0.15
             phi = -0.1
             tx = 0
