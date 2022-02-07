@@ -242,7 +242,7 @@ def testAcc():
 
 
             gt = Image.open(imagePaths[1])
-            gt = transform(im)
+            gt = transform(gt)
             plt.imshow(pred_imgs)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
             plt.imshow(gt)
