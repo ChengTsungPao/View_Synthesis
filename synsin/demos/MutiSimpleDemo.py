@@ -195,7 +195,7 @@ def testAcc():
             phi = -0.1
             tx = 0
             ty = 0
-            tz = 0.1
+            tz = 0.5
 
             RT = torch.eye(4).unsqueeze(0)
             # Set up rotation
@@ -207,34 +207,34 @@ def testAcc():
             print(RTS)
             ###############################################
 
-            intrinsics = frame[1:7]
-            extrinsics = frame[7:]
-            origK = np.array(
-                [
-                    [intrinsics[0], 0, intrinsics[2]],
-                    [0, intrinsics[1], intrinsics[3]],
-                    [0, 0, 1],
-                ],
-                dtype=np.float32,
-            )
-            # offset = np.array(
-            #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+            # intrinsics = frame[1:7]
+            # extrinsics = frame[7:]
+            # origK = np.array(
+            #     [
+            #         [intrinsics[0], 0, intrinsics[2]],
+            #         [0, intrinsics[1], intrinsics[3]],
+            #         [0, 0, 1],
+            #     ],
             #     dtype=np.float32,
-            # ) 
-            # K = np.matmul(offset, origK)
-            K = origK
+            # )
+            # # offset = np.array(
+            # #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+            # #     dtype=np.float32,
+            # # ) 
+            # # K = np.matmul(offset, origK)
+            # K = origK
 
-            origP = extrinsics.reshape(3, 4)
-            P = origP
-            # P = np.matmul(K, origP)  # Merge these together to match habitat
-            P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
-                np.float32
-            )
-            P[3, 3] = 1
-            # P = torch.tensor([np.linalg.inv(P)])
-            P = torch.tensor([P])
-            RTS = [P]
-            print(RTS)
+            # origP = extrinsics.reshape(3, 4)
+            # P = origP
+            # # P = np.matmul(K, origP)  # Merge these together to match habitat
+            # P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
+            #     np.float32
+            # )
+            # P[3, 3] = 1
+            # # P = torch.tensor([np.linalg.inv(P)])
+            # P = torch.tensor([P])
+            # RTS = [P]
+            # print(RTS)
 
             ###############################################
 
