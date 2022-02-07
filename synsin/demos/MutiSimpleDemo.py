@@ -246,6 +246,8 @@ def testAcc():
 
             gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[1][0]))))
             gt = transform(gt)
+            plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_in.png")
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
             plt.imshow(gt.permute(1,2,0) * 0.5 + 0.5)
