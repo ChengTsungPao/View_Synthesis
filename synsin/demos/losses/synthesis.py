@@ -9,7 +9,7 @@ from demos.losses.ssim import ssim, SSIM_Origin
 class SynthesisLoss(nn.Module):
     def __init__(self):
         super().__init__()
-        self.loss_names = ("PSNR", "W_PSNR", "SSIM", "W_PSNR", "W_SSIM")
+        self.loss_names = ("PSNR", "SSIM", "W_PSNR", "W_SSIM")
 
     def get_loss_from_name(self, name):
         if name == "PSNR":

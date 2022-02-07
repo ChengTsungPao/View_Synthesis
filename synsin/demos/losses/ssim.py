@@ -85,7 +85,7 @@ class SSIM_Origin(torch.nn.Module):
         self.window = create_window(window_size, self.channel)
 
     def forward(self, img1, img2, mask=None):
-        print(type(img1))
+        img1 = img1[None, :, :, :]
         (_, channel, _, _) = img1.size()
 
         if (
