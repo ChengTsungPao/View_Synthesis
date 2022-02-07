@@ -59,6 +59,7 @@ def _ssim(
     )
 
     if not (mask is None):
+        print(mask)
         b = mask.size(0)
         ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
         ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
@@ -85,7 +86,6 @@ class SSIM_Origin(torch.nn.Module):
         self.window = create_window(window_size, self.channel)
 
     def forward(self, img1, img2, mask=None):
-        print(mask)
         img1 = img1[None, :, :, :]
         img2 = img2[None, :, :, :]
         (_, channel, _, _) = img1.size()
