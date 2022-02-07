@@ -50,7 +50,6 @@ def getWeight(shape):
 
 class PSNR(nn.Module):
     def forward(self, pred_img, gt_img):
-        print(pred_img)
         pred_img = pred_img[None, :, :, :]
         gt_img = gt_img[None, :, :, :]
 
