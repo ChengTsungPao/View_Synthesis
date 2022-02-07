@@ -42,7 +42,7 @@ def getWeight(shape):
         weight = np.zeros((m, n))
         for i in range(m):
             for j in range(n):
-                weight[i][j] = np.cos((np.pi / n) * (j + 0.5 - n / 2))
+                weight[i][j] = abs(np.cos((np.pi / n) * (j + 0.5 - n / 2)))
         print(weight)
         weight = np.array([[weight, weight, weight]])
         memo[m, n] = weight
