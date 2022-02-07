@@ -195,20 +195,21 @@ def testAcc():
             im = transform(im)
 
             ###############################################
-            # Parameters for the transformation
-            # theta = -0.15
-            # phi = -0.1
-            # tx = 0
-            # ty = 0
-            # tz = 0.1
+            Parameters for the transformation
+            theta = -0.15
+            phi = -0.1
+            tx = 0
+            ty = 0
+            tz = 0.1
 
-            # RT = torch.eye(4).unsqueeze(0)
-            # # Set up rotation
-            # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-            # # Set up translation
-            # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-            # # ALL RT
-            # RTS = [RT]
+            RT = torch.eye(4).unsqueeze(0)
+            # Set up rotation
+            RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+            # Set up translation
+            RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+            # ALL RT
+            RTS = [RT]
+            print(RTS)
             ###############################################
 
             intrinsics = frame[1:7]
@@ -236,6 +237,7 @@ def testAcc():
             P[3, 3] = 1
             P = torch.tensor(P)
             RTS = [P] # [np.linalg.inv(P)]
+            print(RTS)
 
             batch = {
                 'images' : [im.unsqueeze(0)],
