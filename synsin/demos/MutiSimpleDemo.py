@@ -180,7 +180,7 @@ def testAcc():
 
     for file_txt in data_txt:
         imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/*.png".format(file_txt))
-        frames = np.loadtxt("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}.txt".format(file_txt)).readlines()
+        frames = np.loadtxt("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}.txt".format(file_txt), skiprows = 1).readlines()
 
         batch = {
             'images' : [],
@@ -189,7 +189,7 @@ def testAcc():
 
         RTS = []
 
-        for imagePath, frame in zip(imagePaths[:-1:], frames[1:-1:]):
+        for imagePath, frame in zip(imagePaths[:-1:], frames[:-1:]):
             
             im = Image.open(imagePath)
             im = transform(im)
