@@ -226,7 +226,8 @@ def testAcc():
             K = origK
 
             origP = extrinsics.reshape(3, 4)
-            P = np.matmul(K, origP)  # Merge these together to match habitat
+            P = origP
+            # P = np.matmul(K, origP)  # Merge these together to match habitat
             P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
                 np.float32
             )
