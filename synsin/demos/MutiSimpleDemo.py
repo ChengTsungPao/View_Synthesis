@@ -190,21 +190,21 @@ def testAcc():
             }
 
             ###############################################
-            # Parameters for the transformation
-            # theta = -0.15
-            # phi = -0.1
-            # tx = 0
-            # ty = 0
-            # tz = 0.5
+            Parameters for the transformation
+            theta = -0.15
+            phi = -0.1
+            tx = 0
+            ty = 0
+            tz = 0.5
 
-            # RT = torch.eye(4).unsqueeze(0)
-            # # Set up rotation
-            # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-            # # Set up translation
-            # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-            # # ALL RT
-            # RTS = [RT]
-            # print(RTS)
+            RT = torch.eye(4).unsqueeze(0)
+            # Set up rotation
+            RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+            # Set up translation
+            RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+            # ALL RT
+            RTS = [RT]
+            print(RTS)
             ###############################################
 
             intrinsics = frame[1:7]
