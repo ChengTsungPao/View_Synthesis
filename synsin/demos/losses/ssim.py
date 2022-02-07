@@ -114,6 +114,8 @@ class SSIM_Origin(torch.nn.Module):
 
 
 def ssim(img1, img2, window_size=11, mask=None, size_average=True):
+    print(window_size)
+    print(mask)
     (_, channel, _, _) = img1.size()
     window = create_window(window_size, channel)
 
