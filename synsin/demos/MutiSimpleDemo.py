@@ -33,6 +33,8 @@ from models.base_model import BaseModel
 
 from options.options import get_model
 
+from demos.losses.synthesis import SynthesisLoss
+
 torch.backends.cudnn.enabled = True
 
 MODEL_PATH = '/home/abaozheng6/View_Synthesis/synsin/modelcheckpoints/realestate/zbufferpts.pth'
@@ -164,6 +166,8 @@ def testAcc():
         # "000e285b03f3fddf"
     ]
 
+    loss = SynthesisLoss()
+
     for file_txt in data_txt:
         # imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/*.png".format(file_txt))
         frames = np.loadtxt("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}.txt".format(file_txt), skiprows = 1)
@@ -259,6 +263,9 @@ def testAcc():
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/input/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
+
+            gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0])))
+            loss(im, transform(Image.open(gtImagePath)))
 
             if index == 30:
                 break
