@@ -235,14 +235,14 @@ def testAcc():
                 [           0.0,            0.0,            0.0,            1.0]
             ]).astype(np.float32)
 
-            # extrinsicMatrix = np.array([
-            #     [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
-            #     [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
-            #     [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
-            #     [                   0.0,                    0.0,                    0.0,                    1.0]
-            # ]).astype(np.float32)
+            extrinsicMatrix_inverse = np.array([
+                [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
+                [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
+                [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
+                [                   0.0,                    0.0,                    0.0,                    1.0]
+            ]).astype(np.float32)
 
-            RTS = [torch.tensor([extrinsicMatrix])]
+            RTS = [torch.tensor([extrinsicMatrix @ extrinsicMatrix_inverse])]
             print(RTS)
 
             ###############################################
