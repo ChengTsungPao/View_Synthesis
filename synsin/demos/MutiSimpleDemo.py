@@ -33,7 +33,7 @@ from models.base_model import BaseModel
 
 from options.options import get_model
 
-from demos.losses.synthesis import SynthesisLoss
+from demos.losses.synthesis import W_SSIM, SynthesisLoss
 
 torch.backends.cudnn.enabled = True
 
@@ -166,6 +166,11 @@ def testAcc():
         # "000e285b03f3fddf"
     ]
 
+    PSNR_DATA = []
+    W_PSNR_DATA = []
+    SSIM_DATA = []
+    W_SSIM_DATA = []
+
     lossfcn = SynthesisLoss()
 
     for file_txt in data_txt:
@@ -265,7 +270,12 @@ def testAcc():
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
             gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0])))
-            lossfcn(im * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
+            allLoss = lossfcn(im * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
+
+            PSNR_DATA.append(allLoss[0].items[1])
+            SSIM_DATA.append(allLoss[1].items[1])
+            W_PSNR_DATA.append(allLoss[2].items[1])
+            W_SSIM_DATA.append(allLoss[3].items[1])
 
             if index == 30:
                 break
@@ -274,6 +284,9 @@ def testAcc():
         #         print(imagePath)
         #         break
         # break
+
+    print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(PSNR_DATA, W_PSNR_DATA))
+    print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(SSIM_DATA, W_SSIM_DATA))
 
 
 
