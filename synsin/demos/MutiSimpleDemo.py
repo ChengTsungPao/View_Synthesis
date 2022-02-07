@@ -243,9 +243,9 @@ def testAcc():
 
             gt = Image.open(imagePaths[1])
             gt = transform(gt)
-            plt.imshow(pred_imgs)
+            plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
-            plt.imshow(gt)
+            plt.imshow(gt.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_gt.png")
             break
         break
