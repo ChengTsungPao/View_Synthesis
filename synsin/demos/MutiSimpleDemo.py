@@ -254,7 +254,7 @@ def testAcc():
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_gt.png")
 
             print(imagePath)
-            print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0]))))
+            print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[1][0]))))
             break
         break
 
