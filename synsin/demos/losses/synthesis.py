@@ -42,8 +42,7 @@ def getWeight(shape):
         weight = np.zeros((m, n))
         for i in range(m):
             for j in range(n):
-                weight[i][j] = abs(np.cos((np.pi / n) * (j + 0.5 - n / 2)))
-        print(weight)
+                weight[i][j] = np.cos((np.pi / n) * (j + 0.5 - n / 2))
         weight = np.array([[weight, weight, weight]])
         memo[m, n] = weight
     return memo[m, n]
@@ -51,6 +50,7 @@ def getWeight(shape):
 
 class PSNR(nn.Module):
     def forward(self, pred_img, gt_img):
+        print(pred_img)
         pred_img = pred_img[None, :, :, :]
         gt_img = gt_img[None, :, :, :]
 
