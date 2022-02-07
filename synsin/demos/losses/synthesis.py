@@ -30,7 +30,8 @@ class SynthesisLoss(nn.Module):
     def forward(self, pred_img, gt_img):
         for name in self.loss_names:
             loss = self.get_loss_from_name(name)
-            print("{}: {}".format(name, loss(pred_img, gt_img)))
+            value = loss(pred_img, gt_img)
+            print("{}: {}".format(name, value))
 
 
 import numpy as np
