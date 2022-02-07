@@ -65,12 +65,14 @@ class W_PSNR(nn.Module):
 
 class SSIM(nn.Module):
     def __init__(self):
+        super().__init__()
         self.loss = SSIM_Origin()
     def forward(self, pred_img, gt_img):
         return {"ssim": self.loss(pred_img, gt_img)}
 
 class W_SSIM(nn.Module):
     def __init__(self):
+        super().__init__()
         self.loss = SSIM_Origin()
     def forward(self, pred_img, gt_img):
         weight = getWeight(pred_img.shape)
