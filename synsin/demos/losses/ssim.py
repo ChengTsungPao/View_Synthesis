@@ -29,7 +29,7 @@ def create_window(window_size, channel):
 
 
 def _ssim(
-    img1, img2, window, window_size, channel, mask=None, size_average=False
+    img1, img2, window, window_size, channel, mask=None, size_average=True
 ):
     mu1 = F.conv2d(img1, window, padding=window_size // 2, groups=channel)
     mu2 = F.conv2d(img2, window, padding=window_size // 2, groups=channel)
@@ -59,17 +59,18 @@ def _ssim(
     )
 
     if not (mask is None):
-        # b = mask.size(0)
-        # ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
-        # ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
-        #     dim=1
-        # ).clamp(min=1)
-        # return ssim_map.mean()
+        b = mask.size(0)
+        ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
+        ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
+            dim=1
+        ).clamp(min=1)
         print(ssim_map.size())
+        return ssim_map.mean()
+        # print(ssim_map.size())
 
-        ssim_map = ssim_map * mask
-        ssim_map = ssim_map.sum() / mask[0][0].sum()
-        return ssim_map
+        # ssim_map = ssim_map * mask
+        # ssim_map = ssim_map.sum() / mask[0][0].sum()
+        # return ssim_map
 
     import pdb
 
