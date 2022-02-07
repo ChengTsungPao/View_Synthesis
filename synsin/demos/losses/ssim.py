@@ -60,7 +60,8 @@ def _ssim(
 
     if not (mask is None):
         b = mask.size(0)
-        ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
+        ssim_map = ssim_map * mask
+        # ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
         ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
             dim=1
         ).clamp(min=1)
