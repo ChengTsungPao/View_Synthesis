@@ -154,14 +154,14 @@ def testAcc():
 
     data_txt = [
         "0000cc6d8b108390",
-        "000465ebe46a98d2",
-        "00066b3649cc07e5",
-        "0008631059fd7ba6",
-        "000d73d2405332df",
-        "00028da87cc5a4c4",
-        "0006e8e3eaa8cd39",
-        "00087de44e487f80",
-        "000e285b03f3fddf"
+        # "000465ebe46a98d2",
+        # "00066b3649cc07e5",
+        # "0008631059fd7ba6",
+        # "000d73d2405332df",
+        # "00028da87cc5a4c4",
+        # "0006e8e3eaa8cd39",
+        # "00087de44e487f80",
+        # "000e285b03f3fddf"
     ]
 
     for file_txt in data_txt:
@@ -256,9 +256,9 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/input/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
         #     if index == 20:
         #         print(imagePath)
