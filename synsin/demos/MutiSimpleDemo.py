@@ -209,7 +209,6 @@ def testAcc():
 
             intrinsics = frame[1:7]
             extrinsics = frame[7:]
-            print(len(extrinsics))
             origK = np.array(
                 [
                     [intrinsics[0], 0, intrinsics[2]],
@@ -245,7 +244,7 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
 
-            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0]))))
+            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[1][0]))))
             gt = transform(gt)
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
