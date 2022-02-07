@@ -234,6 +234,7 @@ def testAcc():
                 np.float32
             )
             P[3, 3] = 1
+            P = torch.tensor(P)
             RTS = [P] # [np.linalg.inv(P)]
 
             batch = {
