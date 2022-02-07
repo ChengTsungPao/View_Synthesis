@@ -245,7 +245,7 @@ def testAcc():
                 [                   0.0,                    0.0,                    0.0,                    1.0]
             ]).astype(np.float32)
 
-            RTS = [torch.tensor([extrinsicMatrix @ extrinsicMatrix_inverse])]
+            RTS = [torch.tensor([extrinsicMatrix_inverse])]
             print(RTS)
 
             ###############################################
@@ -260,8 +260,8 @@ def testAcc():
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
-            # if index == 10:
-            #     break
+            if index == 30:
+                break
 
         #     if index == 20:
         #         print(imagePath)
