@@ -9,8 +9,7 @@ from demos.losses.ssim import ssim, SSIM_Origin
 class SynthesisLoss(nn.Module):
     def __init__(self):
         super().__init__()
-        self.loss_names = ("PSNR", "SSIM", "W_PSNR", "W_SSIM")
-
+        self.loss_names = ("PSNR", "W_PSNR", "SSIM", "W_PSNR", "W_SSIM")
 
     def get_loss_from_name(self, name):
         if name == "PSNR":
@@ -24,6 +23,8 @@ class SynthesisLoss(nn.Module):
 
         if torch.cuda.is_available():
             return loss.cuda()
+        else:
+            return loss
 
     def forward(self, pred_img, gt_img):
         for name in self.loss_names:
