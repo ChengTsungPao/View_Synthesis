@@ -229,6 +229,7 @@ def testAcc():
 
             rotation_inverse = np.linalg.inv(rotation)
             translation_inverse = -rotation_inverse @ translation
+            translation_inverse = -translation
 
             # if index == 0:
             extrinsicMatrix = np.array([
