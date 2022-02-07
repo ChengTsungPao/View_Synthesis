@@ -215,15 +215,15 @@ def testAcc():
                     [0, intrinsics[1], intrinsics[3]],
                     [0, 0, 1],
                 ],
-                dtype=np.float32,
+                dtype=np.float32
             )
 
             rotation = np.array([
                 [extrinsics[0], extrinsics[1], extrinsics[2]],
                 [extrinsics[4], extrinsics[5], extrinsics[6]],
                 [extrinsics[10], extrinsics[9], extrinsics[10]]
-            ])
-            translation = np.array([extrinsics[3], extrinsics[7], extrinsics[11]])
+            ]).astype(np.float32)
+            translation = np.array([extrinsics[3], extrinsics[7], extrinsics[11]]).astype(np.float32)
 
             rotation_inverse = np.linalg.inv(rotation)
             translation_inverse = -rotation_inverse @ translation
@@ -240,7 +240,7 @@ def testAcc():
                 [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
                 [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
                 [                   0.0,                    0.0,                    0.0,                    1.0]
-            ])
+            ]).astype(np.float32)
 
             RTS = [torch.tensor([extrinsicMatrix])]
             print(RTS)
