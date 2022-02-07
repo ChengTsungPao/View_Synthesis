@@ -185,10 +185,7 @@ def testAcc():
 
             batch = {
                 'images' : [im.unsqueeze(0)],
-                'cameras' : [{
-                    'K' : torch.eye(4).unsqueeze(0),
-                    'Kinv' : torch.eye(4).unsqueeze(0)
-                }]
+
             }
 
             ###############################################
