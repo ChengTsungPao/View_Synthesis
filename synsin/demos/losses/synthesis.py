@@ -36,8 +36,7 @@ class SynthesisLoss(nn.Module):
 import numpy as np
 memo = {}
 def getWeight(shape):
-    print(shape)
-    m, n = shape
+    m, n = shape[1], shape[2]
     if (m, n) not in memo:
         weight = np.zeros((m, n))
         for i in range(m):
