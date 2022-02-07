@@ -177,7 +177,7 @@ def testAcc():
 
         for frame in frames[:-1:]:
             
-            imagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(frame[0]))
+            imagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frame[0])))
             im = Image.open(imagePath)
             im = transform(im)
 
@@ -243,7 +243,7 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
 
-            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(frames[-1][0])))
+            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0]))))
             gt = transform(gt)
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
