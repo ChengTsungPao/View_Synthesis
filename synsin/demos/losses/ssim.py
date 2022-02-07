@@ -63,8 +63,14 @@ def _ssim(
         ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
         ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
             dim=1
-        ).clamp(min=1)
+        )
         return ssim_map.mean()
+
+        # ssim_map = ssim_map.mean(dim=1, keepdim=True) * mask
+        # ssim_map = ssim_map.view(b, -1).sum(dim=1) / mask.view(b, -1).sum(
+        #     dim=1
+        # ).clamp(min=1)
+        # return ssim_map.mean()
 
     import pdb
 
