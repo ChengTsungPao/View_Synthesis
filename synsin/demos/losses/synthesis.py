@@ -38,10 +38,10 @@ memo = {}
 def getWeight(shape):
     m, n = shape[1], shape[2]
     if (m, n) not in memo:
-        weight = np.zeros((m, n))
+        weight = np.zeros((1, m, n))
         for i in range(m):
             for j in range(n):
-                weight[i][j] = np.cos((np.pi / n) * (j + 0.5 - n / 2))
+                weight[0][i][j] = np.cos((np.pi / n) * (j + 0.5 - n / 2))
         memo[m, n] = weight
     return memo[m, n]
 
