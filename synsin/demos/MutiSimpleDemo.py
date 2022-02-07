@@ -209,7 +209,7 @@ def testAcc():
 
             intrinsics = frame[1:7]
             extrinsics = frame[7:]
-
+            print(len(extrinsics))
             origK = np.array(
                 [
                     [intrinsics[0], 0, intrinsics[2]],
