@@ -255,7 +255,7 @@ def testAcc():
                 pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index + 1][0]))))
+            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0]))))
             gt = transform(gt)
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_in.png")
@@ -264,9 +264,9 @@ def testAcc():
             plt.imshow(gt.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_gt.png")
 
-            if index == 10:
+            if index == 20:
                 print(imagePath)
-                print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index + 1][0]))))
+                print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0]))))
                 break
         break
 
