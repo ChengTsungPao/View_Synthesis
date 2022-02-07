@@ -164,20 +164,6 @@ def testAcc():
         "000e285b03f3fddf"
     ]
 
-    imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000465ebe46a98d2/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00066b3649cc07e5/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0008631059fd7ba6/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000d73d2405332df/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00028da87cc5a4c4/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0006e8e3eaa8cd39/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00087de44e487f80/*.png")
-    imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000e285b03f3fddf/*.png")
-
-    batch_size = 10
-    status = []
-    i = 0
-
     for file_txt in data_txt:
         imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/*.png".format(file_txt))
         frames = np.loadtxt("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}.txt".format(file_txt), skiprows = 1)
@@ -204,48 +190,48 @@ def testAcc():
 
             ###############################################
             # Parameters for the transformation
-            theta = -0.15
-            phi = -0.1
-            tx = 0
-            ty = 0
-            tz = 0.1
+            # theta = -0.15
+            # phi = -0.1
+            # tx = 0
+            # ty = 0
+            # tz = 0.1
 
-            RT = torch.eye(4).unsqueeze(0)
-            # Set up rotation
-            RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-            # Set up translation
-            RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-            # ALL RT
-            RTS = [RT]
-            print(RTS)
+            # RT = torch.eye(4).unsqueeze(0)
+            # # Set up rotation
+            # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+            # # Set up translation
+            # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+            # # ALL RT
+            # RTS = [RT]
+            # print(RTS)
             ###############################################
 
-            # intrinsics = frame[1:7]
-            # extrinsics = frame[7:]
+            intrinsics = frame[1:7]
+            extrinsics = frame[7:]
 
-            # origK = np.array(
-            #     [
-            #         [intrinsics[0], 0, intrinsics[2]],
-            #         [0, intrinsics[1], intrinsics[3]],
-            #         [0, 0, 1],
-            #     ],
-            #     dtype=np.float32,
-            # )
-            # offset = np.array(
-            #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
-            #     dtype=np.float32,
-            # ) 
-            # K = np.matmul(offset, origK)
+            origK = np.array(
+                [
+                    [intrinsics[0], 0, intrinsics[2]],
+                    [0, intrinsics[1], intrinsics[3]],
+                    [0, 0, 1],
+                ],
+                dtype=np.float32,
+            )
+            offset = np.array(
+                [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+                dtype=np.float32,
+            ) 
+            K = np.matmul(offset, origK)
 
-            # origP = extrinsics.reshape(3, 4)
-            # P = np.matmul(K, origP)  # Merge these together to match habitat
-            # P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
-            #     np.float32
-            # )
-            # P[3, 3] = 1
-            # P = torch.tensor([P])
-            # RTS = [P] # [np.linalg.inv(P)]
-            # print(RTS)
+            origP = extrinsics.reshape(3, 4)
+            P = np.matmul(K, origP)  # Merge these together to match habitat
+            P = np.vstack((P, np.zeros((1, 4), dtype=np.float32))).astype(
+                np.float32
+            )
+            P[3, 3] = 1
+            P = torch.tensor([P])
+            RTS = [P] # [np.linalg.inv(P)]
+            print(RTS)
 
             ###############################################
 
@@ -255,7 +241,7 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
 
-            gt = Image.open(imagePath[1])
+            gt = Image.open(imagePaths[1])
             gt = transform(im)
             plt.imshow(pred_imgs)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
