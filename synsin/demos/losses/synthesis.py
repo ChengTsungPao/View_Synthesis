@@ -27,6 +27,7 @@ class SynthesisLoss(nn.Module):
             return loss
 
     def forward(self, pred_img, gt_img):
+        print(pred_img.size(), gt_img.size())
         for name in self.loss_names:
             loss = self.get_loss_from_name(name)
             value = loss(pred_img, gt_img)
@@ -50,7 +51,7 @@ class PSNR(nn.Module):
     def forward(self, pred_img, gt_img):
         pred_img = pred_img[None, :, :, :]
         gt_img = gt_img[None, :, :, :]
-        
+
         bs = pred_img.size(0)
         mse_err = (pred_img - gt_img).pow(2).sum(dim=1).view(bs, -1).mean(dim=1)
 
