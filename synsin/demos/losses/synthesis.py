@@ -10,6 +10,7 @@ class SynthesisLoss(nn.Module):
     def __init__(self):
         super().__init__()
         self.loss_names = ("PSNR", "SSIM", "W_PSNR", "W_SSIM")
+        self.type = ("psnr", "ssim", "psnr", "ssim")
 
     def get_loss_from_name(self, name):
         if name == "PSNR":
@@ -29,11 +30,11 @@ class SynthesisLoss(nn.Module):
     def forward(self, pred_img, gt_img):
         print(pred_img.size(), gt_img.size())
         ret = []
-        for name in self.loss_names:
+        for name, lossType in zip(self.loss_names, self.type):
             loss = self.get_loss_from_name(name)
             value = loss(pred_img, gt_img)
             print("{}: {}".format(name, value))
-            ret.append(value[name].data.cpu().numpy())
+            ret.append(value[lossType].data.cpu().numpy())
         return ret
 
 
