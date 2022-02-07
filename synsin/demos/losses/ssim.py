@@ -82,7 +82,7 @@ class SSIM_Origin(torch.nn.Module):
         super(SSIM_Origin, self).__init__()
         self.window_size = window_size
         self.size_average = size_average
-        self.channel = 1
+        self.channel = 3
         self.window = create_window(window_size, self.channel)
 
     def forward(self, img1, img2, mask=None):
