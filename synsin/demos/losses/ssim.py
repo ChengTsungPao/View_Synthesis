@@ -68,7 +68,7 @@ def _ssim(
         print(ssim_map.size())
 
         ssim_map = ssim_map * mask
-        ssim_map = ssim_map.sum() / mask.sum()
+        ssim_map = ssim_map.sum() / mask[0][0].sum()
         return ssim_map
 
     import pdb
