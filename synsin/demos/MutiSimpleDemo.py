@@ -175,7 +175,9 @@ def testAcc():
 
         RTS = []
 
-        for frame in frames[:-1:]:
+        for index in range(len(frames) - 1):
+
+            frame = frames[index]
             
             imagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frame[0])))
             im = Image.open(imagePath)
@@ -228,12 +230,13 @@ def testAcc():
             rotation_inverse = np.linalg.inv(rotation)
             translation_inverse = -rotation_inverse @ translation
 
-            extrinsicMatrix = np.array([
-                [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
-                [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
-                [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
-                [           0.0,            0.0,            0.0,            1.0]
-            ]).astype(np.float32)
+            if index == 0:
+                extrinsicMatrix = np.array([
+                    [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
+                    [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
+                    [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
+                    [           0.0,            0.0,            0.0,            1.0]
+                ]).astype(np.float32)
 
             extrinsicMatrix_inverse = np.array([
                 [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
@@ -252,8 +255,7 @@ def testAcc():
                 pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-
-            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[1][0]))))
+            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index + 1][0]))))
             gt = transform(gt)
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_in.png")
@@ -262,9 +264,10 @@ def testAcc():
             plt.imshow(gt.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_gt.png")
 
-            print(imagePath)
-            print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[1][0]))))
-            break
+            if index == 10:
+                print(imagePath)
+                print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index + 1][0]))))
+                break
         break
 
 
