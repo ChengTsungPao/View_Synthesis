@@ -185,24 +185,27 @@ def testAcc():
 
             batch = {
                 'images' : [im.unsqueeze(0)],
-
+                'cameras' : [{
+                    'K' : torch.eye(4).unsqueeze(0),
+                    'Kinv' : torch.eye(4).unsqueeze(0)
+                }]
             }
 
             ###############################################
-            theta = -0.15
-            phi = -0.1
-            tx = 0
-            ty = 0
-            tz = 0.5
+            # theta = -0.15
+            # phi = -0.1
+            # tx = 0
+            # ty = 0
+            # tz = 0.5
 
-            RT = torch.eye(4).unsqueeze(0)
-            # Set up rotation
-            RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-            # Set up translation
-            RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-            # ALL RT
-            RTS = [RT]
-            print(RTS)
+            # RT = torch.eye(4).unsqueeze(0)
+            # # Set up rotation
+            # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+            # # Set up translation
+            # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+            # # ALL RT
+            # RTS = [RT]
+            # print(RTS)
             ###############################################
 
             intrinsics = frame[1:7]
@@ -252,20 +255,15 @@ def testAcc():
                 pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0]))))
-            gt = transform(gt)
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_in.png")
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_test_in.png".format(str(int(frame[0]))))
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
-            plt.imshow(gt.permute(1,2,0) * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_gt.png")
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_test_pred.png".format(str(int(frame[0]))))
 
-            if index == 20:
-                print(imagePath)
-                print("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0]))))
-                break
-        break
+        #     if index == 20:
+        #         print(imagePath)
+        #         break
+        # break
 
 
 
