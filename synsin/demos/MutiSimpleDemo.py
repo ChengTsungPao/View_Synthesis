@@ -284,7 +284,7 @@ def testAcc():
         #         print(imagePath)
         #         break
         # break
-
+    print("===========================")
     print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(np.mean(PSNR_DATA), np.mean(W_PSNR_DATA)))
     print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(np.mean(SSIM_DATA), np.mean(W_SSIM_DATA)))
 
