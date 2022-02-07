@@ -272,10 +272,10 @@ def testAcc():
             gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[-1][0])))
             allLoss = lossfcn(im * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
 
-            PSNR_DATA.append(allLoss[0].items[1])
-            SSIM_DATA.append(allLoss[1].items[1])
-            W_PSNR_DATA.append(allLoss[2].items[1])
-            W_SSIM_DATA.append(allLoss[3].items[1])
+            PSNR_DATA.append(allLoss[0])
+            SSIM_DATA.append(allLoss[1])
+            W_PSNR_DATA.append(allLoss[2])
+            W_SSIM_DATA.append(allLoss[3])
 
             if index == 30:
                 break
@@ -285,8 +285,8 @@ def testAcc():
         #         break
         # break
 
-    print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(PSNR_DATA, W_PSNR_DATA))
-    print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(SSIM_DATA, W_SSIM_DATA))
+    print("PSNR_DATA = {}, W_PSNR_DATA = {}".format(np.mean(PSNR_DATA), np.mean(W_PSNR_DATA)))
+    print("SSIM_DATA = {}, W_SSIM_DATA = {}".format(np.mean(SSIM_DATA), np.mean(W_SSIM_DATA)))
 
 
 

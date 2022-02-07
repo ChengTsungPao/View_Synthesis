@@ -33,7 +33,7 @@ class SynthesisLoss(nn.Module):
             loss = self.get_loss_from_name(name)
             value = loss(pred_img, gt_img)
             print("{}: {}".format(name, value))
-            ret.append(value)
+            ret.append(value[name].data.cpu().numpy())
         return ret
 
 
