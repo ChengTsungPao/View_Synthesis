@@ -3,7 +3,7 @@
 import torch
 import torch.nn as nn
 
-from demos.losses.ssim import ssim
+from demos.losses.ssim import ssim, SSIM_Origin
 
 
 class SynthesisLoss(nn.Module):
@@ -13,9 +13,7 @@ class SynthesisLoss(nn.Module):
 
 
     def get_loss_from_name(self, name):
-        if name == "l1":
-            loss = L1LossWrapper()
-        elif name == "PSNR":
+        if name == "PSNR":
             loss = PSNR()
         elif name == "SSIM":
             loss = SSIM()
@@ -66,18 +64,17 @@ class W_PSNR(nn.Module):
         return {"psnr": psnr.mean()}
 
 class SSIM(nn.Module):
+    def __init__(self):
+        self.loss = SSIM_Origin()
     def forward(self, pred_img, gt_img):
-        return {"ssim": ssim(pred_img, gt_img)}
+        return {"ssim": self.loss(pred_img, gt_img)}
 
 class W_SSIM(nn.Module):
+    def __init__(self):
+        self.loss = SSIM_Origin()
     def forward(self, pred_img, gt_img):
         weight = getWeight(pred_img.shape)
-        return {"ssim": ssim(pred_img, gt_img, weight)}
+        return {"ssim": self.loss(pred_img, gt_img, weight)}
 
-# Wrapper of the L1Loss so that the format matches what is expected
-class L1LossWrapper(nn.Module):
-    def forward(self, pred_img, gt_img):
-        err = nn.L1Loss()(pred_img, gt_img)
-        return {"L1": err, "Total Loss": err}
 
 
