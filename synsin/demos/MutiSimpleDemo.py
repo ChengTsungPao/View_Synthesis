@@ -256,9 +256,9 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_test_in.png".format(str(int(frame[0]))))
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_test_pred.png".format(str(int(frame[0]))))
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
         #     if index == 20:
         #         print(imagePath)
