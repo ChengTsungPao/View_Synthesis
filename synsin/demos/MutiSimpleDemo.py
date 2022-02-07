@@ -217,11 +217,12 @@ def testAcc():
                 ],
                 dtype=np.float32,
             )
-            offset = np.array(
-                [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
-                dtype=np.float32,
-            ) 
-            K = np.matmul(offset, origK)
+            # offset = np.array(
+            #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+            #     dtype=np.float32,
+            # ) 
+            # K = np.matmul(offset, origK)
+            K = origK
 
             origP = extrinsics.reshape(3, 4)
             P = np.matmul(K, origP)  # Merge these together to match habitat
