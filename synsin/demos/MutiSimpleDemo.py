@@ -165,7 +165,7 @@ def testAcc():
     ]
 
     for file_txt in data_txt:
-        imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/*.png".format(file_txt))
+        # imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/*.png".format(file_txt))
         frames = np.loadtxt("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}.txt".format(file_txt), skiprows = 1)
 
         batch = {
@@ -175,8 +175,9 @@ def testAcc():
 
         RTS = []
 
-        for imagePath, frame in zip(imagePaths[:-1:], frames[:-1:]):
+        for frame in frames[:-1:]:
             
+            imagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(frame[0]))
             im = Image.open(imagePath)
             im = transform(im)
 
@@ -242,7 +243,7 @@ def testAcc():
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
 
-            gt = Image.open(imagePaths[-1])
+            gt = Image.open("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(frames[-1][0])))
             gt = transform(gt)
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/test_pred.png")
