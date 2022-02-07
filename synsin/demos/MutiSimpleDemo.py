@@ -218,12 +218,12 @@ def testAcc():
                 ],
                 dtype=np.float32,
             )
-            offset = np.array(
-                [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
-                dtype=np.float32,
-            ) 
-            K = np.matmul(offset, origK)
-            # K = origK
+            # offset = np.array(
+            #     [[2, 0, -1], [0, -2, 1], [0, 0, -1]],  # Flip ys to match habitat
+            #     dtype=np.float32,
+            # ) 
+            # K = np.matmul(offset, origK)
+            K = origK
 
             origP = extrinsics.reshape(3, 4)
             P = np.matmul(K, origP)  # Merge these together to match habitat
@@ -231,8 +231,9 @@ def testAcc():
                 np.float32
             )
             P[3, 3] = 1
-            P = torch.tensor([np.linalg.inv(P)])
-            RTS = [P] # [np.linalg.inv(P)]
+            # P = torch.tensor([np.linalg.inv(P)])
+            P = torch.tensor([P])
+            RTS = [P]
             print(RTS)
 
             ###############################################
