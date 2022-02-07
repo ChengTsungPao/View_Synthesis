@@ -77,6 +77,7 @@ class W_SSIM(nn.Module):
         self.loss = SSIM_Origin()
     def forward(self, pred_img, gt_img):
         weight = getWeight(pred_img.shape)
+        weight = torch.tensor(weight)
         return {"ssim": self.loss(pred_img, gt_img, weight)}
 
 
