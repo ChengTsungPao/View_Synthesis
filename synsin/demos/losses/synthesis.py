@@ -48,6 +48,9 @@ def getWeight(shape):
 
 class PSNR(nn.Module):
     def forward(self, pred_img, gt_img):
+        pred_img = pred_img[None, :, :, :]
+        gt_img = gt_img[None, :, :, :]
+        
         bs = pred_img.size(0)
         mse_err = (pred_img - gt_img).pow(2).sum(dim=1).view(bs, -1).mean(dim=1)
 
@@ -57,6 +60,8 @@ class PSNR(nn.Module):
 class W_PSNR(nn.Module):
     def forward(self, pred_img, gt_img):
         weight = getWeight(pred_img.shape)
+        pred_img = pred_img[None, :, :, :]
+        gt_img = gt_img[None, :, :, :]
 
         bs = pred_img.size(0)
         mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / np.sum(weight)
@@ -68,16 +73,22 @@ class SSIM(nn.Module):
     def __init__(self):
         super().__init__()
         self.loss = SSIM_Origin()
+
     def forward(self, pred_img, gt_img):
+        pred_img = pred_img[None, :, :, :]
+        gt_img = gt_img[None, :, :, :]
         return {"ssim": self.loss(pred_img, gt_img)}
 
 class W_SSIM(nn.Module):
     def __init__(self):
         super().__init__()
         self.loss = SSIM_Origin()
+
     def forward(self, pred_img, gt_img):
         weight = getWeight(pred_img.shape)
         weight = torch.tensor(weight)
+        pred_img = pred_img[None, :, :, :]
+        gt_img = gt_img[None, :, :, :]
         return {"ssim": self.loss(pred_img, gt_img, weight)}
 
 
