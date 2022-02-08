@@ -85,7 +85,7 @@ path = [
 def testTime():
     from glob import glob
     import time
-    imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/*.png")[:1000]
+    imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0000cc6d8b108390/*.png")
     # imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000465ebe46a98d2/*.png")
     # imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00066b3649cc07e5/*.png")
     # imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/0008631059fd7ba6/*.png")
@@ -95,7 +95,7 @@ def testTime():
     # imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00087de44e487f80/*.png")
     # imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000e285b03f3fddf/*.png")
 
-    batch_size = 5
+    batch_size = 1
     status = []
     i = 0
     while i + batch_size <= len(imagePaths):
