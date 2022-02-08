@@ -95,7 +95,7 @@ def testTime():
     imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/00087de44e487f80/*.png")
     imagePaths += glob("/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/000e285b03f3fddf/*.png")
 
-    batch_size = 10
+    batch_size = 1
     status = []
     i = 0
     while i + batch_size < len(imagePaths):
@@ -184,7 +184,7 @@ def testAcc():
         W_PSNR_DATA = []
         SSIM_DATA = []
         W_SSIM_DATA = []
-        
+
         for index in range(len(frames) - 1):
 
             frame = frames[index]
@@ -297,8 +297,8 @@ def testAcc():
 
 
 if __name__ == "__main__":
-    # testTime()
-    testAcc()
+    testTime()
+    # testAcc()
         
 
 
