@@ -98,7 +98,7 @@ def testTime():
     batch_size = 1
     status = []
     i = 0
-    while i + batch_size < len(imagePaths):
+    while i + batch_size <= len(imagePaths):
 
         batch = {
             'images' : [],
