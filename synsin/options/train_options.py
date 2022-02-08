@@ -282,7 +282,7 @@ class ArgumentParser:
         )
         training.add_argument("--batch-size", type=int, default=16)
         training.add_argument("--continue_epoch", type=int, default=0)
-        training.add_argument("--max_epoch", type=int, default=3000)
+        training.add_argument("--max_epoch", type=int, default=3001)
         training.add_argument("--folder_to_save", type=str, default="outpaint")
         training.add_argument(
             "--model-epoch-path",
