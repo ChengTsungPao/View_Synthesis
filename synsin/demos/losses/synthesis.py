@@ -76,7 +76,8 @@ class W_PSNR(nn.Module):
         print(a.size(), weight.shape)
         mse_err = np.sum(np.array((pred_img - gt_img) ** 2) * weight) / np.sum(weight)
 
-        psnr = 10 * (1 / mse_err).log10()
+        # psnr = 10 * (1 / mse_err).log10()
+        psnr = 10 * np.log10((1 / mse_err))
         return {"psnr": psnr}
 
 class SSIM(nn.Module):
