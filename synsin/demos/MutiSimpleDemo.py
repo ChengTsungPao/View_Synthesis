@@ -239,23 +239,23 @@ def testAcc():
 
             rotation_inverse = np.linalg.inv(rotation)
             translation_inverse = -rotation_inverse @ translation
-
-            if index == 0:
-                extrinsicMatrix = np.array([
-                    [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
-                    [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
-                    [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
-                    [           0.0,            0.0,            0.0,            1.0]
-                ]).astype(np.float32)
-
-            extrinsicMatrix_inverse = np.array([
-                [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
-                [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
-                [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
-                [                   0.0,                    0.0,                    0.0,                    1.0]
+            
+            extrinsicMatrix = np.array([
+                [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
+                [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
+                [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
+                [           0.0,            0.0,            0.0,            1.0]
             ]).astype(np.float32)
 
-            RTS = [torch.tensor([extrinsicMatrix * extrinsicMatrix_inverse])]
+            if index == 0:
+                extrinsicMatrix_inverse = np.array([
+                    [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
+                    [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
+                    [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
+                    [                   0.0,                    0.0,                    0.0,                    1.0]
+                ]).astype(np.float32)
+
+            RTS = [torch.tensor([extrinsicMatrix_inverse * extrinsicMatrix])]
             print(RTS)
 
             ###############################################
