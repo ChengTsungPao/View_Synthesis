@@ -156,14 +156,14 @@ def testAcc():
 
     data_txt = [
         "0000cc6d8b108390",
-        "000465ebe46a98d2",
-        "00066b3649cc07e5",
-        "0008631059fd7ba6",
-        "000d73d2405332df",
-        "00028da87cc5a4c4",
-        "0006e8e3eaa8cd39",
-        "00087de44e487f80",
-        "000e285b03f3fddf"
+        # "000465ebe46a98d2",
+        # "00066b3649cc07e5",
+        # "0008631059fd7ba6",
+        # "000d73d2405332df",
+        # "00028da87cc5a4c4",
+        # "0006e8e3eaa8cd39",
+        # "00087de44e487f80",
+        # "000e285b03f3fddf"
     ]
 
 
@@ -202,60 +202,60 @@ def testAcc():
             }
 
             ###############################################
-            # theta = -0.15
-            # phi = -0.1
-            # tx = 0
-            # ty = 0
-            # tz = 0.5
+            theta = -0.15
+            phi = -0.1
+            tx = 0
+            ty = 0
+            tz = 0.5
 
-            # RT = torch.eye(4).unsqueeze(0)
-            # # Set up rotation
-            # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-            # # Set up translation
-            # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-            # # ALL RT
-            # RTS = [RT]
-            # print(RTS)
+            RT = torch.eye(4).unsqueeze(0)
+            # Set up rotation
+            RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+            # Set up translation
+            RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+            # ALL RT
+            RTS = [RT]
+            print(RTS)
             ###############################################
 
-            intrinsics = frame[1:7]
-            extrinsics = frame[7:]
+            # intrinsics = frame[1:7]
+            # extrinsics = frame[7:]
 
-            intrinsicMatrix = np.array(
-                [
-                    [intrinsics[0], 0, intrinsics[2]],
-                    [0, intrinsics[1], intrinsics[3]],
-                    [0, 0, 1],
-                ],
-                dtype=np.float32
-            )
+            # intrinsicMatrix = np.array(
+            #     [
+            #         [intrinsics[0], 0, intrinsics[2]],
+            #         [0, intrinsics[1], intrinsics[3]],
+            #         [0, 0, 1],
+            #     ],
+            #     dtype=np.float32
+            # )
 
-            rotation = np.array([
-                [extrinsics[0], extrinsics[1], extrinsics[2]],
-                [extrinsics[4], extrinsics[5], extrinsics[6]],
-                [extrinsics[10], extrinsics[9], extrinsics[10]]
-            ]).astype(np.float32)
-            translation = np.array([extrinsics[3], extrinsics[7], extrinsics[11]]).astype(np.float32)
+            # rotation = np.array([
+            #     [extrinsics[0], extrinsics[1], extrinsics[2]],
+            #     [extrinsics[4], extrinsics[5], extrinsics[6]],
+            #     [extrinsics[10], extrinsics[9], extrinsics[10]]
+            # ]).astype(np.float32)
+            # translation = np.array([extrinsics[3], extrinsics[7], extrinsics[11]]).astype(np.float32)
 
-            rotation_inverse = np.linalg.inv(rotation)
-            translation_inverse = -rotation_inverse @ translation
+            # rotation_inverse = np.linalg.inv(rotation)
+            # translation_inverse = -rotation_inverse @ translation
 
-            if index == 0:
-                extrinsicMatrix = np.array([
-                    [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
-                    [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
-                    [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
-                    [           0.0,            0.0,            0.0,            1.0]
-                ]).astype(np.float32)
+            # if index == 0:
+            #     extrinsicMatrix = np.array([
+            #         [rotation[0, 0], rotation[0, 1], rotation[0, 2], translation[0]],
+            #         [rotation[1, 0], rotation[1, 1], rotation[1, 2], translation[1]],
+            #         [rotation[2, 0], rotation[2, 1], rotation[2, 2], translation[2]],
+            #         [           0.0,            0.0,            0.0,            1.0]
+            #     ]).astype(np.float32)
 
-            extrinsicMatrix_inverse = np.array([
-                [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
-                [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
-                [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
-                [                   0.0,                    0.0,                    0.0,                    1.0]
-            ]).astype(np.float32)
+            # extrinsicMatrix_inverse = np.array([
+            #     [rotation_inverse[0, 0], rotation_inverse[0, 1], rotation_inverse[0, 2], translation_inverse[0]],
+            #     [rotation_inverse[1, 0], rotation_inverse[1, 1], rotation_inverse[1, 2], translation_inverse[1]],
+            #     [rotation_inverse[2, 0], rotation_inverse[2, 1], rotation_inverse[2, 2], translation_inverse[2]],
+            #     [                   0.0,                    0.0,                    0.0,                    1.0]
+            # ]).astype(np.float32)
 
-            RTS = [torch.tensor([extrinsicMatrix * extrinsicMatrix_inverse])]
+            # RTS = [torch.tensor([extrinsicMatrix * extrinsicMatrix_inverse])]
             # print(RTS)
 
             ###############################################
@@ -265,10 +265,10 @@ def testAcc():
                 pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
-            # plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-            # plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/input/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
-            # plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-            # plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
+            plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/20220209/input/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))))
+            plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/20220209/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
             gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0])))
             allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
@@ -278,13 +278,13 @@ def testAcc():
             W_PSNR_DATA.append(allLoss[2])
             W_SSIM_DATA.append(allLoss[3])
 
-            # if index == 30:
-            #     break
+            if index == 30:
+                break
 
-        #     if index == 20:
-        #         print(imagePath)
-        #         break
-        # break
+            if index == 20:
+                print(imagePath)
+                break
+
         print("===========================")
         print("===========================")
         print("===========================")
