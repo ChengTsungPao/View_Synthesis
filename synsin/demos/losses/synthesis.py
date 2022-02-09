@@ -39,6 +39,7 @@ class SynthesisLoss(nn.Module):
 
 
 import numpy as np
+import copy
 memo = {}
 def getWeight(shape):
     m, n = shape[1], shape[2]
@@ -47,7 +48,7 @@ def getWeight(shape):
         for i in range(m):
             for j in range(n):
                 weight[i][j] = np.cos((np.pi / n) * (j + 0.5 - n / 2))
-        # weight = np.array([[weight, weight, weight]])
+        weight = np.array([[copy.deepcopy(weight), copy.deepcopy(weight), copy.deepcopy(weight)]])
         memo[m, n] = weight
     return memo[m, n]
 
