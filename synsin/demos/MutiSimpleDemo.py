@@ -279,12 +279,12 @@ def testAcc():
             W_PSNR_DATA.append(allLoss[2])
             W_SSIM_DATA.append(allLoss[3])
 
-            if index == 30:
-                break
+            # if index == 30:
+            #     break
 
-            if index == 20:
-                print(imagePath)
-                break
+            # if index == 20:
+            #     print(imagePath)
+            #     break
 
         print("===========================")
         print("===========================")
