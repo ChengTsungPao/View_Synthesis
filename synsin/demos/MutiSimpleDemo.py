@@ -114,7 +114,7 @@ def testTime():
             im = Image.open(imagePath)
             im = transform(im)
             # Parameters for the transformation
-            theta = 1.52 #-0.15
+            theta = -0.15
             phi = -0.1
             tx = 0
             ty = 0
@@ -202,7 +202,7 @@ def testAcc():
             }
 
             ###############################################
-            theta = -0.15
+            theta = 1.52 #-0.15
             phi = -0.1
             tx = 0
             ty = 0
