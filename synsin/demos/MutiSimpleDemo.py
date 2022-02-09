@@ -297,8 +297,8 @@ def testAcc():
 
 
 if __name__ == "__main__":
-    testTime()
-    # testAcc()
+    # testTime()
+    testAcc()
         
 
 
