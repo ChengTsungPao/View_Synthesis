@@ -72,12 +72,12 @@ class W_PSNR(nn.Module):
         gt_img = gt_img[None, :, :, :]
         weight = torch.tensor(weight)
 
-        bs = pred_img.size(0)
-        mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / weight.sum()
-        psnr = 10 * np.log10((1 / mse_err))
+        # bs = pred_img.size(0)
+        # mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / weight.sum()
+        # psnr = 10 * np.log10((1 / mse_err))
 
-        # mse_err = (((pred_img - gt_img) ** 2) * weight).sum() / weight.sum()
-        # psnr = 10 * (1 / mse_err).log10()
+        mse_err = (((pred_img - gt_img) ** 2) * weight).sum() / weight.sum()
+        psnr = 10 * (1 / mse_err).log10()
         
         return {"psnr": psnr}
 
