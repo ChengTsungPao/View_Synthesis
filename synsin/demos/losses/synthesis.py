@@ -78,6 +78,7 @@ class W_PSNR(nn.Module):
 
         # psnr = 10 * (1 / mse_err).log10()
         psnr = 10 * np.log10((1 / mse_err))
+        print(psnr)
         return {"psnr": psnr}
 
 class SSIM(nn.Module):
