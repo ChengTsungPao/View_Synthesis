@@ -58,6 +58,7 @@ else:
 #  Load the original model to be tested
 model_to_test = BaseModel(model, opts)
 model_to_test.load_state_dict(torch.load(MODEL_PATH)['state_dict'])
+print(model_to_test.model)
 model_to_test.eval()
 
 
