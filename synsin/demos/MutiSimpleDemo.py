@@ -270,7 +270,7 @@ def testAcc():
             # plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
             # plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/test_image/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))))
 
-            gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index][0])))
+            gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0])))
             allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
 
             PSNR_DATA.append(allLoss[0])
