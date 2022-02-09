@@ -71,10 +71,11 @@ class W_PSNR(nn.Module):
         gt_img = gt_img[None, :, :, :]
 
         bs = pred_img.size(0)
-        mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / np.sum(weight)
+        # mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / np.sum(weight)
+        mse_err = np.sum(((pred_img - gt_img) ** 2) * weight) / np.sum(weight)
 
         psnr = 10 * (1 / mse_err).log10()
-        return {"psnr": psnr.mean()}
+        return {"psnr": psnr}
 
 class SSIM(nn.Module):
     def __init__(self):
