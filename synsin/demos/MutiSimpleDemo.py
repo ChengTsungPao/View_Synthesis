@@ -187,7 +187,7 @@ def testAcc():
 
         for index in range(0, len(frames) - 1):
 
-            frame = frames[index]
+            frame = frames[0]
             
             imagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frame[0])))
             im = Image.open(imagePath)
