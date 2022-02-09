@@ -77,6 +77,11 @@ class W_PSNR(nn.Module):
         # mse_err = ((pred_img - gt_img).pow(2) * weight).sum(dim=1).view(bs, -1).mean(dim=1) / weight.sum()
         # psnr = 10 * np.log10((1 / mse_err))
 
+        a = (pred_img - gt_img) ** 2
+        print(a.size())
+        a = a * weight
+        print(a.size())
+
         mse_err = (((pred_img - gt_img) ** 2) * weight).sum() / weight.sum()
         psnr = 10 * (1 / mse_err).log10()
         
