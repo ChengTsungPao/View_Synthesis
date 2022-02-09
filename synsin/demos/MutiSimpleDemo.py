@@ -185,7 +185,7 @@ def testAcc():
         SSIM_DATA = []
         W_SSIM_DATA = []
 
-        for index in range(len(frames) - 2, len(frames) - 1):
+        for index in range(len(frames) - 1, len(frames)):
 
             frame = frames[index]
             
