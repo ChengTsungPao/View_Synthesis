@@ -58,9 +58,10 @@ class PSNR(nn.Module):
         pred_img = pred_img[None, :, :, :]
         gt_img = gt_img[None, :, :, :]
 
-        bs = pred_img.size(0)
+        # bs = pred_img.size(0)
         # mse_err = (pred_img - gt_img).pow(2).sum(dim=1).view(bs, -1).mean(dim=1)
-        mse_err = ((pred_img - gt_img) ** 2).sum().mean()
+
+        mse_err = ((pred_img - gt_img) ** 2).mean()
 
         psnr = 10 * (1 / mse_err).log10()
         return {"psnr": psnr}

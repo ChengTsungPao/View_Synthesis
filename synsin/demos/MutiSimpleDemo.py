@@ -273,7 +273,6 @@ def testAcc():
 
             gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[index][0])))
             allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, transform(Image.open(gtImagePath)) * 0.5 + 0.5)
-            print(pred_imgs[1])
 
             PSNR_DATA.append(allLoss[0])
             SSIM_DATA.append(allLoss[1])
