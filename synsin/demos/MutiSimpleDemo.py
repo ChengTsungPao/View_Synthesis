@@ -205,9 +205,9 @@ def testAcc():
             ###############################################
             theta = 0.5 #-0.15
             phi = -0.1
-            tx = 0
+            tx = 1
             ty = 0
-            tz = 0.5
+            tz = 0
 
             RT = torch.eye(4).unsqueeze(0)
             # Set up rotation
@@ -279,12 +279,12 @@ def testAcc():
             W_PSNR_DATA.append(allLoss[2])
             W_SSIM_DATA.append(allLoss[3])
 
-            # if index == 30:
-            #     break
+            if index == 30:
+                break
 
-            # if index == 20:
-            #     print(imagePath)
-            #     break
+            if index == 20:
+                print(imagePath)
+                break
 
         print("===========================")
         print("===========================")
