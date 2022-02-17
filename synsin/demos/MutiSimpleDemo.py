@@ -354,6 +354,36 @@ def simulation_test():
             pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
+
+
+
+        theta, phi, tx, ty, tz = -theta, -phi, -tx, -ty, -tz
+
+        RT = torch.eye(4).unsqueeze(0)
+        # Set up rotation
+        RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+        # Set up translation
+        RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+        # ALL RT
+        RTS = [RT]
+
+        batch = {
+            'images' : [pred_imgs[0].squeeze().unsqueeze(0)],
+            'cameras' : [{
+                'K' : torch.eye(4).unsqueeze(0),
+                'Kinv' : torch.eye(4).unsqueeze(0)
+            }]
+        }
+
+        # Generate a new view at the new transformation
+        with torch.no_grad():
+            pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
+            # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
+
+
+
+
+
         plt.axis("off")
         plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
         plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight')
