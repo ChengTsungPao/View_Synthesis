@@ -355,9 +355,9 @@ def simulation_test():
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
         plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/input/test_in_{}.png".format(str(index).zfill(2)))
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight')
         plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)))
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight')
 
         allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, im * 0.5 + 0.5)
 
