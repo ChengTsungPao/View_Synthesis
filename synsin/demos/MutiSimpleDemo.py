@@ -358,28 +358,28 @@ def simulation_test():
 
         ###############################################
 
-        # theta, phi, tx, ty, tz = -theta, -phi, -tx, -ty, -tz
+        theta, phi, tx, ty, tz = -theta, -phi, -tx, -ty, -tz
 
-        # RT = torch.eye(4).unsqueeze(0)
-        # # Set up rotation
-        # RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
-        # # Set up translation
-        # RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
-        # # ALL RT
-        # RTS = [RT]
+        RT = torch.eye(4).unsqueeze(0)
+        # Set up rotation
+        RT[0,0:3,0:3] = torch.Tensor(quaternion.as_rotation_matrix(quaternion.from_rotation_vector([phi, theta, 0])))
+        # Set up translation
+        RT[0,0:3,3] = torch.Tensor([tx, ty, tz])
+        # ALL RT
+        RTS = [RT]
 
-        # batch = {
-        #     'images' : [pred_imgs[0].squeeze().unsqueeze(0)],
-        #     'cameras' : [{
-        #         'K' : torch.eye(4).unsqueeze(0),
-        #         'Kinv' : torch.eye(4).unsqueeze(0)
-        #     }]
-        # }
+        batch = {
+            'images' : [pred_imgs[0].squeeze().unsqueeze(0)],
+            'cameras' : [{
+                'K' : torch.eye(4).unsqueeze(0),
+                'Kinv' : torch.eye(4).unsqueeze(0)
+            }]
+        }
 
-        # # Generate a new view at the new transformation
-        # with torch.no_grad():
-        #     pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
-        #     # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
+        # Generate a new view at the new transformation
+        with torch.no_grad():
+            pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
+            # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
         ###############################################
         # import cv2
