@@ -426,8 +426,8 @@ def simulation_test():
 
 if __name__ == "__main__":
     # testTime()
-    # testAcc()
-    simulation_test()
+    testAcc()
+    # simulation_test()
         
 
 
