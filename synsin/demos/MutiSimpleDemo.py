@@ -313,7 +313,7 @@ def simulation_test():
     SSIM_DATA = []
     W_SSIM_DATA = []
 
-    imagePaths = glob("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217/*.png")
+    imagePaths = sorted(glob("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217/*.png"))
     inputParameter = open("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217/location.txt", "r").readlines()
 
     number = min(len(imagePaths), len(inputParameter))
@@ -338,6 +338,7 @@ def simulation_test():
 
         theta, phi, tx, ty, tz = parameter.split(",")
         theta, phi, tx, ty, tz = float(theta) * np.pi / 180, float(phi) * np.pi / 180, float(tx), float(ty), float(tz)
+        theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
 
         RT = torch.eye(4).unsqueeze(0)
         # Set up rotation
