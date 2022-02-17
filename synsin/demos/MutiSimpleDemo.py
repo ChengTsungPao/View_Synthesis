@@ -338,8 +338,8 @@ def simulation_test():
 
         theta, phi, tx, ty, tz = parameter.split(",")
         theta, phi, tx, ty, tz = float(theta) * np.pi / 180, float(phi) * np.pi / 180, float(tx), float(ty), float(tz)
-        # theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
-        theta, phi, tx, ty, tz = theta, phi, tx / 10, ty / 10, tz / 10
+        theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
+        # theta, phi, tx, ty, tz = theta, phi, tx / 10, ty / 10, tz / 10
 
         RT = torch.eye(4).unsqueeze(0)
         # Set up rotation
@@ -354,8 +354,10 @@ def simulation_test():
             pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
+        plt.axis("off")
         plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
         plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight')
+        plt.axis("off")
         plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
         plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight')
 
