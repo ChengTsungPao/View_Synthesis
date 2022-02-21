@@ -328,7 +328,7 @@ def simulation_test():
     SSIM_DATA = []
     W_SSIM_DATA = []
 
-    imagePaths = sorted(glob("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217/*.png"))
+    imagePaths = sorted(glob("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221/*.png"))
     inputParameter = open("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217/location.txt", "r").readlines()
 
     number = min(len(imagePaths), len(inputParameter))
