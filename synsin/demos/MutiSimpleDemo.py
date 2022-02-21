@@ -400,10 +400,10 @@ def simulation_test():
         # import cv2
         plt.axis("off")
         plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
-        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
         plt.axis("off")
         plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
         # cv2.imshow("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)), pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
 
         allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, im * 0.5 + 0.5)
