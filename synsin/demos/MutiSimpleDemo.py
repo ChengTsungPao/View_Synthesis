@@ -316,7 +316,7 @@ def simulation_test():
     from glob import glob
     import time
 
-    f = open("image_acc_0221.txt", "w")
+    f = open("/home/abaozheng6/View_Synthesis/synsin/demos/image_acc_0221.txt", "w")
     f.write("PSNR W_PSNR SSIM W_SSIM\n")
 
     batch = {
