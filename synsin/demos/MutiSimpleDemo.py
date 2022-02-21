@@ -316,6 +316,9 @@ def simulation_test():
     from glob import glob
     import time
 
+    f = open("image_acc_0221.txt", "w")
+    f.write("PSNR W_PSNR SSIM W_SSIM\n")
+
     batch = {
         'images' : [],
         'cameras' : []
@@ -412,6 +415,7 @@ def simulation_test():
         SSIM_DATA.append(allLoss[1])
         W_PSNR_DATA.append(allLoss[2])
         W_SSIM_DATA.append(allLoss[3])
+        f.write("{} {} {} {}\n".format(PSNR_DATA[-1], W_PSNR_DATA[-1], SSIM_DATA[-1], W_SSIM_DATA[-1]))
 
     print("===========================")
     print("===========================")
@@ -423,6 +427,9 @@ def simulation_test():
     print("===========================")
     print("===========================")
     print("===========================")
+    f.write("================ Average ================\n")
+    f.write("{} {} {} {}\n".format(np.mean(PSNR_DATA), np.mean(W_PSNR_DATA), np.mean(SSIM_DATA), np.mean(W_SSIM_DATA)))
+    f.close()
 
 if __name__ == "__main__":
     # testTime()
