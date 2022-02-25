@@ -360,8 +360,8 @@ def simulation_test():
         theta, phi, tx, ty, tz = parameter.split(",")
         theta, phi, tx, ty, tz = float(theta) * np.pi / 180, float(phi) * np.pi / 180, float(tx), float(ty), float(tz)
         # theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
-        theta, phi, tx, ty, tz = theta / 5, phi / 5, tx / 5, ty / 5, tz / 5
-        # theta, phi, tx, ty, tz = theta / 2, phi / 2, tx / 2, ty / 2, tz / 2
+        # theta, phi, tx, ty, tz = theta / 5, phi / 5, tx / 5, ty / 5, tz / 5
+        theta, phi, tx, ty, tz = theta / 2, phi / 2, tx / 2, ty / 2, tz / 2
         # theta, phi, tx, ty, tz = theta, phi, tx / 10, ty / 10, tz / 10
 
         RT = torch.eye(4).unsqueeze(0)
