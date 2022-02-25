@@ -376,7 +376,7 @@ def simulation_test():
         with torch.no_grad():
             pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
-
+        plt.axis("off")
         plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
         plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
 
