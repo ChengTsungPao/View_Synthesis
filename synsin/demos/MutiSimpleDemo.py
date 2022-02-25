@@ -264,6 +264,9 @@ def testAcc():
                 pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
                 # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
+            plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/dataset_acc_0217/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))), bbox_inches = 'tight', pad_inches = 0)
+
             ###############################################
 
             batch = {
@@ -286,7 +289,7 @@ def testAcc():
             plt.imshow(im.permute(1,2,0) * 0.5 + 0.5)
             plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/dataset_acc_0217/input/{}_{}_test_in.png".format(file_txt, str(int(frame[0]))), bbox_inches = 'tight', pad_inches = 0)
             plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/dataset_acc_0217/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))), bbox_inches = 'tight', pad_inches = 0)
+            plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/dataset_acc_0217/reverse/{}_{}_test_reverse.png".format(file_txt, str(int(frame[0]))), bbox_inches = 'tight', pad_inches = 0)
 
             # gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frames[0][0])))
             gtImagePath = "/home/abaozheng6/View_Synthesis/synsin/dataset/RealEstate10K/frames/train/{}/{}.png".format(file_txt, str(int(frame[0])))
