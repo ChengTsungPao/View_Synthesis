@@ -359,8 +359,9 @@ def simulation_test():
 
         theta, phi, tx, ty, tz = parameter.split(",")
         theta, phi, tx, ty, tz = float(theta) * np.pi / 180, float(phi) * np.pi / 180, float(tx), float(ty), float(tz)
-        # theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
-        theta, phi, tx, ty, tz = theta / 2, phi / 2, tx / 2, ty / 2, tz / 2
+        theta, phi, tx, ty, tz = theta / 10, phi / 10, tx / 10, ty / 10, tz / 10
+        # theta, phi, tx, ty, tz = theta / 5, phi / 5, tx / 5, ty / 5, tz / 5
+        # theta, phi, tx, ty, tz = theta / 2, phi / 2, tx / 2, ty / 2, tz / 2
         # theta, phi, tx, ty, tz = theta, phi, tx / 10, ty / 10, tz / 10
 
         RT = torch.eye(4).unsqueeze(0)
@@ -376,6 +377,8 @@ def simulation_test():
             pred_imgs = model_to_test.model.module.forward_angle(batch, RTS)
             # depth = nn.Sigmoid()(model_to_test.model.module.pts_regressor(batch['images'][0].cuda()))
 
+        plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/dataset_acc_0217/pred/{}_{}_test_pred.png".format(file_txt, str(int(frame[0]))), bbox_inches = 'tight', pad_inches = 0)
 
         ###############################################
 
@@ -409,7 +412,7 @@ def simulation_test():
         plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/input/test_in_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
         plt.axis("off")
         plt.imshow(pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
-        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/pred/test_pred_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
+        plt.savefig("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0221_result/reverse/test_reverse_{}.png".format(str(index).zfill(2)), bbox_inches = 'tight', pad_inches = 0)
         # cv2.imshow("/home/abaozheng6/View_Synthesis/synsin/demos/image_test_0217_result/pred/test_pred_{}.png".format(str(index).zfill(2)), pred_imgs[0].squeeze().cpu().permute(1,2,0).numpy() * 0.5 + 0.5)
 
         allLoss = lossfcn(pred_imgs[0].squeeze().cpu() * 0.5 + 0.5, im * 0.5 + 0.5)
